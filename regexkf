@@ -1,0 +1,4 @@
+dev: 
+([A-Za-z]+)(?:\s+(?:(reg)\s*,\s*(?:(reg)(?:\s*,\s*(reg|off)|\b)|(off)(?:\((reg)\)|\b))|(off)(?:\((reg)\)|\b))|\b)
+res:
+([A-Za-z]+)(?:\s+?(?:(r9|gp|fp|a0|ra|a1|r10|a2|a3|r11|t0|t1|s0|sp|s1|s2)\s*?,\s*?(?:(r9|gp|fp|a0|ra|a1|r10|a2|a3|r11|t0|t1|s0|sp|s1|s2)(?:\s*?,\s*?(r9|gp|fp|a0|ra|a1|r10|a2|a3|r11|t0|t1|s0|sp|s1|s2|\-?[A-Za-z0-9]+)|\b)|(\-?[A-Za-z0-9]+)(?:\((r9|gp|fp|a0|ra|a1|r10|a2|a3|r11|t0|t1|s0|sp|s1|s2)\)|\b))|(\-?[A-Za-z0-9]+)(?:\((r9|gp|fp|a0|ra|a1|r10|a2|a3|r11|t0|t1|s0|sp|s1|s2)\)|\b))|\b)
