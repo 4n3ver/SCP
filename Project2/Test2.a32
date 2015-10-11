@@ -7,7 +7,7 @@
 .NAME	SW     =0x00000014
 
 	; This should never be executed
-	.ORIG 0	
+	.ORIG 0
 	bt			t0,t0,AtZero
 	addi		s1,s1,0x1
 	addi		s1,s1,0x1
@@ -25,7 +25,7 @@ AtZero:
 	sw		t0,OFSLEDR(gp)
 	addi	t0,s0,0xBAD
 	sw		t0,OFSHEX(gp)
-	bt		t0,t0,AtZero
+	;bt		t0,t0,AtZero
 	
 	; Now the actual code
 	.ORIG 0x40
@@ -68,7 +68,7 @@ AddWorks:
 	nand	a3,a2,a1	; a3 is     0xFFFFFFD9
 	sub		a1,t0,a2	; a1 is 9   0x00000009
 	and		t0,a1,a2	; t0 is 8	0x00000008
-	nxor	a1,a1,t0	; a1 is -2  0xFFFFFFFE
+	xnor	a1,a1,t0	; a1 is -2  0xFFFFFFFE
 	xor		a2,a2,a3	; a3 is	    0x00000027
 	sub		a0,a0,a2	; a0 is -6
 	add		a0,a1,a0	; a0 is -8

@@ -113,7 +113,7 @@ public class assemble {
         target.printf("DEPTH=%d;\n", DEPTH);
         target.printf("ADDRESS_RADIX=%s;\n", ADDR_RADIX.getName());
         target.printf("DATA_RADIX=%s;\n", DATA_RADIX.getName());
-        target.printf("CONTENT_BEGIN\n");
+        target.printf("CONTENT BEGIN\n");
         Pattern assemblerParser = Pattern.compile("(?:(\\.[A-Za-z]+)\\s+(?:" +
                 "([A-Za-z][a-zA-Z0-9]+)\\s*=\\s*([A-Za-z0-9]+)\\b|" +
                 "([A-Za-z0-9]+)\\b))");
@@ -162,8 +162,7 @@ public class assemble {
                         Matcher parsed = assemblerParser.matcher(line);
                         if (parsed.matches()) {
                             if (!parsed.group(1).equals(".NAME")) {
-                                if (parsed.group(1).equals(".ORIG") &&
-                                        byte_addr == 0) {
+                                if (parsed.group(1).equals(".ORIG")) {
                                     long newByte_addr =
                                             parseAddr(parsed.group(4));
                                     if (newByte_addr > byte_addr) {
@@ -268,7 +267,8 @@ public class assemble {
      */
     private static String formatComment(String actualInstruction) {
         return String.format("-- @ 0x" + ADDR_RADIX.getFormat(WIDTH / 4) +
-                " : %s", byte_addr, actualInstruction.toUpperCase());
+                        " : %s", byte_addr,
+                actualInstruction.toUpperCase().replaceFirst("\\s+", "\t"));
     }
 
     /**
@@ -308,7 +308,7 @@ public class assemble {
                             "] : %s;\n", getWordAddress(bytefrom),
                     getWordAddress(byteuntil), DEAD_MEAT);
         } else if (delta == 0) {
-            return String.format(ADDR_RADIX.getFormat(WIDTH / 8) + " : %s;\n",
+            return String.format(ADDR_RADIX.getFormat(WIDTH / 4) + " : %s;\n",
                     getWordAddress(byteuntil), DEAD_MEAT);
         }
         throw new IllegalArgumentException();
@@ -356,6 +356,8 @@ public class assemble {
         } else {
             val = Long.parseLong(number);
         }
+        debug.println(
+                "parseOffset: " + number + " -> " + Long.toBinaryString(val));
         return val;
     }
 
@@ -363,18 +365,21 @@ public class assemble {
      * Process IMMEDIATE value which can be label or raw value into a
      * valid value.
      *
-     * @param raw raw immediate value read
-     * @return processed immediate value
+     * @param raw     raw immediate value read
+     * @param bitMask mask to determined which part of the parsed value to
+     *                be returned
+     * @return processed immediate value in 16-bit binary
      */
-    private static String parseImm(String raw) {
+    private static String parseImm(String raw, int bitMask) {
         int imm;
         try {
             long val = parseOffset(raw);
             if (val < -32768 && val > 32767) {
-                throw new IllegalArgumentException(
-                        "Out of range: " + val);
+                System.err.printf(
+                        "[WARNING] some information in %s might be loss\n",
+                        raw);
             }
-            imm = (int) (val & 0xFF);
+            imm = (int) (val & bitMask);
         } catch (Exception e) {
             if (addressLabelDict.containsKey(raw)) {
                 int delta = (int) (addressLabelDict.get(raw) - byte_addr - 4);
@@ -382,11 +387,17 @@ public class assemble {
                     throw new IllegalArgumentException(
                             "Out of range: " + delta);
                 }
-                imm = delta & 0xFF;
+                imm = delta & bitMask;
                 debug.printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", byte_addr,
                         raw, addressLabelDict.get(raw));
             } else if (constLabelDict.containsKey(raw)) {
-                imm = (int) (constLabelDict.get(raw) & 0xFF);
+                long val = constLabelDict.get(raw);
+                if (val < -32768 && val > 32767) {
+                    System.err.printf(
+                            "[WARNING] some information in %s might be loss\n",
+                            raw);
+                }
+                imm = (int) (val & bitMask);
             } else {
                 throw new IllegalArgumentException(
                         raw + " is not on the dictionary: " +
@@ -397,6 +408,28 @@ public class assemble {
                 .replace(' ', '0');
         debug.printf("IMM: raw: %s -> %s(%d)\n", raw, result, result.length());
         return result;
+    }
+
+    /**
+     * Process IMMEDIATE value which can be label or raw value into a
+     * valid value. This will take 16-LSB.
+     *
+     * @param raw raw immediate value read
+     * @return processed immediate value in 16-bit binary
+     */
+    private static String parseImmLo(String raw) {
+        return parseImm(raw, 0xFFFF);
+    }
+
+    /**
+     * Process IMMEDIATE value which can be label or raw value into a
+     * valid value. This will take 16-MSB.
+     *
+     * @param raw raw immediate value read
+     * @return processed immediate value in 16-bit binary
+     */
+    private static String parseImmHi(String raw) {
+        return parseImm(raw, 0xFFFF0000).substring(0, 16);
     }
 
     /**
@@ -508,7 +541,7 @@ public class assemble {
         dict.put("xor", "0110" + PrimaryOP.ALU_R.code());
         dict.put("nand", "1100" + PrimaryOP.ALU_R.code());
         dict.put("nor", "1101" + PrimaryOP.ALU_R.code());
-        dict.put("nxor", "1110" + PrimaryOP.ALU_R.code());
+        dict.put("xnor", "1110" + PrimaryOP.ALU_R.code());
 
         // ALU-I
         dict.put("addi", "0000" + PrimaryOP.ALU_I.code());
@@ -518,7 +551,7 @@ public class assemble {
         dict.put("xori", "0110" + PrimaryOP.ALU_I.code());
         dict.put("nandi", "1100" + PrimaryOP.ALU_I.code());
         dict.put("nori", "1101" + PrimaryOP.ALU_I.code());
-        dict.put("nxori", "1110" + PrimaryOP.ALU_I.code());
+        dict.put("xnori", "1110" + PrimaryOP.ALU_I.code());
         dict.put("mvhi", "1011" + PrimaryOP.ALU_I.code());
 
         // LOAD/STORE
@@ -675,19 +708,19 @@ public class assemble {
     // grouping number can be found at http://regexr.com/3bv78
     private static Map<String, Handler> buildAllInstrsHandlerDict() {
         String[] rd_imm_list = {
-                "mvhi", "beqz", "bltz", "bltez", "bnez", "bgtez", "bgtz"
+                 "beqz", "bltz", "bltez", "bnez", "bgtez", "bgtz"
         };
         Handler rd_imm = args -> {
             target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) + "0000" +
-                            parseImm(args.group(5)) +
+                            parseImmLo(args.group(5)) +
                             opcodeDict.get(args.group(1).toLowerCase())));
         };
 
         String[] rd_rs1_imm_list = {
                 "addi", "subi", "andi", "ori", "xori", "nandi", "nori",
-                "nxori", "fi", "eqi", "lti", "ltei", "ti",
+                "xnori", "fi", "eqi", "lti", "ltei", "ti",
                 "nei", "gtei", "gti"
         };
         Handler rd_rs1_imm = args -> {
@@ -695,7 +728,7 @@ public class assemble {
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) +
                             regDict.get(args.group(3).toLowerCase()) +
-                            parseImm(args.group(4)) +
+                            parseImmLo(args.group(4)) +
                             opcodeDict.get(args.group(1).toLowerCase())));
         };
 
@@ -707,12 +740,12 @@ public class assemble {
             target.println(formatInstruction(
                     regDict.get(args.group(3).toLowerCase()) +
                             regDict.get(args.group(2).toLowerCase()) +
-                            parseImm(args.group(4)) +
+                            parseImmLo(args.group(4)) +
                             opcodeDict.get(args.group(1).toLowerCase())));
         };
 
         String[] rd_rs1_rs2_list = {
-                "add", "sub", "and", "or", "xor", "nand", "nor", "nxor", "f",
+                "add", "sub", "and", "or", "xor", "nand", "nor", "xnor", "f",
                 "eq", "lt", "lte", "t", "ne", "gte", "gt"
         };
         Handler rd_rs1_rs2 = args -> {
@@ -733,7 +766,7 @@ public class assemble {
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) +
                             regDict.get(args.group(6).toLowerCase()) +
-                            parseImm(args.group(5)) +
+                            parseImmLo(args.group(5)) +
                             opcodeDict.get(args.group(1).toLowerCase())));
         };
 
@@ -745,7 +778,7 @@ public class assemble {
             target.println(formatInstruction(
                     regDict.get(args.group(6).toLowerCase()) +
                             regDict.get(args.group(2).toLowerCase()) +
-                            parseImm(args.group(5)) +
+                            parseImmLo(args.group(5)) +
                             opcodeDict.get(args.group(1).toLowerCase())));
         };
 
@@ -768,6 +801,16 @@ public class assemble {
         for (String name : rs2_imm_rs1_list) {
             dict.put(name, rs2_imm_rs1);
         }
+        dict.put("mvhi", new Handler() {
+            @Override
+            public void processArgs(Matcher args) {
+                target.println(formatComment(args.group(0)));
+                target.println(formatInstruction(
+                        regDict.get(args.group(2).toLowerCase()) + "0000" +
+                                parseImmHi(args.group(5)) +
+                                opcodeDict.get(args.group(1).toLowerCase())));
+            }
+        });
 
         dict.putAll(buildPseudoInstrsHandlerDict());
         return Collections.unmodifiableMap(dict);
@@ -782,8 +825,9 @@ public class assemble {
                         "invalid used of reserved word");
             }
             constLabelDict.put(args.group(2), parseAddr(args.group(3)));
-            debug.println(args.group(2) + "->0x" + Long.toHexString(parseAddr(
-                    args.group(3))).toUpperCase());
+            debug.println("NAME_LABEL: new label " + args.group(2) + "->0x" +
+                    Long.toHexString(constLabelDict.get(args.group(2)))
+                            .toUpperCase());
         });
         dict.put(".ORIG", args -> {
             long newByte_addr = parseAddr(args.group(4));
