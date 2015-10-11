@@ -72,7 +72,7 @@ public class assemble {
 
     // read only maps
     private static Map<String, Handler> instrsHandlerDict;
-    private static Map<String, Handler> assemblerInsDict;
+    private static Map<String, Handler> assemblerDirDict;
     private static Map<String, String> opcodeDict;
     private static Map<String, String> regDict;
 
@@ -127,7 +127,7 @@ public class assemble {
                         registerPattern + ")\\)|\\b))|\\b)");
         debug.println("Assembler Pattern: " + assemblerParser.pattern());
         debug.println("Instruction Pattern: " + instructionParser.pattern());
-        processAssemblerInstruction(asmScanner, assemblerParser);
+        processAssemblerDirective(asmScanner, assemblerParser);
         asmScanner.close();
         asmScanner = openAsm(src);
         processInstruction(asmScanner, assemblerParser, instructionParser);
@@ -171,7 +171,7 @@ public class assemble {
                                                 newByte_addr - 1));
                                     }
                                 }
-                                assemblerInsDict.get(parsed.group(1))
+                                assemblerDirDict.get(parsed.group(1))
                                         .processArgs(parsed);
                             }
                         } else {
@@ -210,8 +210,8 @@ public class assemble {
      * @param assemblerParser regex pattern to parse the assembler
      *                        instruction
      */
-    private static void processAssemblerInstruction(Scanner src,
-                                                    Pattern assemblerParser) {
+    private static void processAssemblerDirective(Scanner src,
+                                                  Pattern assemblerParser) {
         byte_addr = 0;
         for (long line_num = 1; src.hasNextLine(); line_num++) {
             String line = null;
@@ -226,7 +226,7 @@ public class assemble {
                             if (parsed.group(1).equals(".WORD")) {
                                 byte_addr += 4;
                             } else {
-                                assemblerInsDict.get(parsed.group(1))
+                                assemblerDirDict.get(parsed.group(1))
                                         .processArgs(parsed);
                             }
                         } else {
@@ -350,9 +350,9 @@ public class assemble {
         String radixId = number.length() > 2 ? number.substring(0, 2) : "";
         long val;
         if (radixId.equals("0x")) {
-            val = Long.parseLong(number.substring(2), 16);
+            val = Long.parseLong(number.replace("0x", ""), 16);
         } else if (radixId.equals("0b")) {
-            val = Long.parseLong(number.substring(2), 2);
+            val = Long.parseLong(number.replace("0b", ""), 2);
         } else {
             val = Long.parseLong(number);
         }
@@ -386,8 +386,7 @@ public class assemble {
                 debug.printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", byte_addr,
                         raw, addressLabelDict.get(raw));
             } else if (constLabelDict.containsKey(raw)) {
-                int val = (int) (constLabelDict.get(raw) & 0xFF);
-                imm = val;
+                imm = (int) (constLabelDict.get(raw) & 0xFF);
             } else {
                 throw new IllegalArgumentException(
                         raw + " is not on the dictionary: " +
@@ -492,7 +491,7 @@ public class assemble {
         opcodeDict = buildOpCodeDict();
         regDict = buildRegDict();
         instrsHandlerDict = buildAllInstrsHandlerDict();
-        assemblerInsDict = buildAssemblerInsDict();
+        assemblerDirDict = buildAssemblerDirDict();
         constLabelDict = new HashMap<>();
         addressLabelDict = new HashMap<>();
     }
@@ -775,7 +774,7 @@ public class assemble {
     }
 
     // grouping number can be found at http://regexr.com/3bv8i
-    private static Map<String, Handler> buildAssemblerInsDict() {
+    private static Map<String, Handler> buildAssemblerDirDict() {
         Map<String, Handler> dict = new HashMap<>();
         dict.put(".NAME", args -> {
             if (isReserved(args.group(2))) {
