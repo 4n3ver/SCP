@@ -366,6 +366,51 @@ public class assemble {
      * Process IMMEDIATE value which can be label or raw value into a
      * valid value.
      *
+     * @param raw raw immediate value read
+     * @return processed immediate value in 16-bit binary
+     */
+    private static String parsePCRel(String raw) {
+        int pcrel;
+        try {
+            long val = parseOffset(raw);
+            if (val < -32768 && val > 32767) {
+                throw new IllegalArgumentException(
+                        "Out of range: " + val);
+            }
+            pcrel = (int) (val & 0xFFFF);
+        } catch (Exception e) {
+            if (addressLabelDict.containsKey(raw)) {
+                int delta = (int) (addressLabelDict.get(raw) - byte_addr - 4);
+                if (delta < -32768 && delta > 32767) {
+                    throw new IllegalArgumentException(
+                            "Out of range: " + delta);
+                }
+                pcrel = (int) (getWordAddress(delta) & 0xFFFF);
+                debug.printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", byte_addr,
+                        raw, addressLabelDict.get(raw));
+            } else if (constLabelDict.containsKey(raw)) {
+                int delta = (int) (constLabelDict.get(raw) - byte_addr - 4);
+                if (delta < -32768 && delta > 32767) {
+                    throw new IllegalArgumentException(
+                            "Out of range: " + delta);
+                }
+                pcrel = (int) (getWordAddress(delta) & 0xFFFF);
+            } else {
+                throw new IllegalArgumentException(
+                        raw + " is not on the dictionary: " +
+                                constLabelDict.toString());
+            }
+        }
+        String result = String.format("%16s", Integer.toBinaryString(pcrel))
+                .replace(' ', '0');
+        debug.printf("PCREL: raw: %s -> %s(%d)\n", raw, result, result.length());
+        return result;
+    }
+
+    /**
+     * Process IMMEDIATE value which can be label or raw value into a
+     * valid value.
+     *
      * @param raw     raw immediate value read
      * @param bitMask mask to determined which part of the parsed value to
      *                be returned
@@ -383,12 +428,14 @@ public class assemble {
             imm = (int) (val & bitMask);
         } catch (Exception e) {
             if (addressLabelDict.containsKey(raw)) {
-                int delta = (int) (addressLabelDict.get(raw) - byte_addr - 4);
-                if (delta < -32768 && delta > 32767) {
-                    throw new IllegalArgumentException(
-                            "Out of range: " + delta);
+                long val = addressLabelDict.get(raw);
+                if (val < -32768 && val > 32767) {
+                    System.err
+                            .printf("[WARNING] some information in %s might " +
+                                            "be loss\n",
+                                    raw);
                 }
-                imm = (int) (getWordAddress(delta) & bitMask);
+                imm = (int) (val & bitMask);
                 debug.printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", byte_addr,
                         raw, addressLabelDict.get(raw));
             } else if (constLabelDict.containsKey(raw)) {
@@ -709,13 +756,13 @@ public class assemble {
     // grouping number can be found at http://regexr.com/3bv78
     private static Map<String, Handler> buildAllInstrsHandlerDict() {
         String[] rd_imm_list = {
-                 "beqz", "bltz", "bltez", "bnez", "bgtez", "bgtz"
+                "beqz", "bltz", "bltez", "bnez", "bgtez", "bgtz"
         };
         Handler rd_imm = args -> {
             target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) + "0000" +
-                            parseImmLo(args.group(5)) +
+                            parsePCRel(args.group(5)) +
                             opcodeDict.get(args.group(1).toLowerCase())));
         };
 
@@ -739,9 +786,9 @@ public class assemble {
         Handler rs1_rs2_imm = args -> {
             target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
-                    regDict.get(args.group(3).toLowerCase()) +
-                            regDict.get(args.group(2).toLowerCase()) +
-                            parseImmLo(args.group(4)) +
+                    regDict.get(args.group(2).toLowerCase()) +
+                            regDict.get(args.group(3).toLowerCase()) +
+                            parsePCRel(args.group(4)) +
                             opcodeDict.get(args.group(1).toLowerCase())));
         };
 
@@ -760,7 +807,7 @@ public class assemble {
         };
 
         String[] rd_imm_rs1_list = {
-                "lw", "jal"
+                "lw"
         };
         Handler rd_imm_rs1 = args -> {
             target.println(formatComment(args.group(0)));
@@ -802,15 +849,25 @@ public class assemble {
         for (String name : rs2_imm_rs1_list) {
             dict.put(name, rs2_imm_rs1);
         }
-        dict.put("mvhi", new Handler() {
-            @Override
-            public void processArgs(Matcher args) {
-                target.println(formatComment(args.group(0)));
-                target.println(formatInstruction(
-                        regDict.get(args.group(2).toLowerCase()) + "0000" +
-                                parseImmHi(args.group(5)) +
-                                opcodeDict.get(args.group(1).toLowerCase())));
-            }
+        dict.put("mvhi", args -> {
+            target.println(formatComment(args.group(0)));
+            target.println(formatInstruction(
+                    regDict.get(args.group(2).toLowerCase()) + "0000" +
+                            parseImmHi(args.group(5)) +
+                            opcodeDict.get(args.group(1).toLowerCase())));
+        });
+        dict.put("jal", args -> {
+            target.println(formatComment(args.group(0)));
+            String messyOffset = String.format("%16s",
+                    Integer.toBinaryString(
+                            (Integer.parseInt(parseImmLo(args.group(5)),
+                                    2) / 4)))
+                    .replace(' ', '0');
+            target.println(formatInstruction(
+                    regDict.get(args.group(2).toLowerCase()) +
+                            regDict.get(args.group(6).toLowerCase()) +
+                            messyOffset +
+                            opcodeDict.get(args.group(1).toLowerCase())));
         });
 
         dict.putAll(buildPseudoInstrsHandlerDict());

@@ -29,8 +29,8 @@
       <file leaf-file-name="assemble.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assemble.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44698206">
-              <caret line="390" column="29" selection-start-line="390" selection-start-column="29" selection-end-line="390" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.2512235">
+              <caret line="764" column="39" selection-start-line="764" selection-start-column="39" selection-end-line="764" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#Radix#0;class#assemble#0" expanded="false" />
@@ -42,6 +42,7 @@
                 <element signature="method#fillDEADMEAT#0;class#assemble#0" expanded="false" />
                 <element signature="method#parseAddr#0;class#assemble#0" expanded="false" />
                 <element signature="method#parseOffset#0;class#assemble#0" expanded="false" />
+                <element signature="method#parseImm#0;class#assemble#0" expanded="false" />
                 <element signature="method#parseArgs#0;class#assemble#0" expanded="false" />
                 <element signature="method#openAsm#0;class#assemble#0" expanded="false" />
                 <element signature="method#writeMif#0;class#assemble#0" expanded="false" />
@@ -52,7 +53,6 @@
                 <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
                 <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
                 <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-                <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
                 <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
                 <element signature="class#Handler#0;class#assemble#0" expanded="false" />
               </folding>
@@ -433,12 +433,12 @@
       <workItem from="1443991155906" duration="52511000" />
       <workItem from="1444499358587" duration="34604000" />
       <workItem from="1444590489262" duration="357000" />
-      <workItem from="1444591069022" duration="7740000" />
+      <workItem from="1444591069022" duration="11755000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95212000" />
+    <option name="totallyTimeSpent" value="99227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -535,6 +535,7 @@
             <element signature="method#fillDEADMEAT#0;class#assemble#0" expanded="false" />
             <element signature="method#parseAddr#0;class#assemble#0" expanded="false" />
             <element signature="method#parseOffset#0;class#assemble#0" expanded="false" />
+            <element signature="method#parseImm#0;class#assemble#0" expanded="false" />
             <element signature="method#parseArgs#0;class#assemble#0" expanded="false" />
             <element signature="method#openAsm#0;class#assemble#0" expanded="false" />
             <element signature="method#writeMif#0;class#assemble#0" expanded="false" />
@@ -545,7 +546,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
@@ -567,6 +567,7 @@
             <element signature="method#fillDEADMEAT#0;class#assemble#0" expanded="false" />
             <element signature="method#parseAddr#0;class#assemble#0" expanded="false" />
             <element signature="method#parseOffset#0;class#assemble#0" expanded="false" />
+            <element signature="method#parseImm#0;class#assemble#0" expanded="false" />
             <element signature="method#parseArgs#0;class#assemble#0" expanded="false" />
             <element signature="method#openAsm#0;class#assemble#0" expanded="false" />
             <element signature="method#writeMif#0;class#assemble#0" expanded="false" />
@@ -577,7 +578,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
@@ -599,6 +599,7 @@
             <element signature="method#fillDEADMEAT#0;class#assemble#0" expanded="false" />
             <element signature="method#parseAddr#0;class#assemble#0" expanded="false" />
             <element signature="method#parseOffset#0;class#assemble#0" expanded="false" />
+            <element signature="method#parseImm#0;class#assemble#0" expanded="false" />
             <element signature="method#parseArgs#0;class#assemble#0" expanded="false" />
             <element signature="method#openAsm#0;class#assemble#0" expanded="false" />
             <element signature="method#writeMif#0;class#assemble#0" expanded="false" />
@@ -609,7 +610,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
@@ -704,8 +704,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assemble.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44698206">
-          <caret line="390" column="29" selection-start-line="390" selection-start-column="29" selection-end-line="390" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.2512235">
+          <caret line="764" column="39" selection-start-line="764" selection-start-column="39" selection-end-line="764" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#Radix#0;class#assemble#0" expanded="false" />
@@ -717,6 +717,7 @@
             <element signature="method#fillDEADMEAT#0;class#assemble#0" expanded="false" />
             <element signature="method#parseAddr#0;class#assemble#0" expanded="false" />
             <element signature="method#parseOffset#0;class#assemble#0" expanded="false" />
+            <element signature="method#parseImm#0;class#assemble#0" expanded="false" />
             <element signature="method#parseArgs#0;class#assemble#0" expanded="false" />
             <element signature="method#openAsm#0;class#assemble#0" expanded="false" />
             <element signature="method#writeMif#0;class#assemble#0" expanded="false" />
@@ -727,7 +728,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
