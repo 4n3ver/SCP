@@ -254,6 +254,7 @@ public class assemble {
                 System.exit(-1);
             }
         }
+        debug.println("ADDR_LABEL: " + addressLabelDict.toString());
     }
 
     /**
@@ -387,7 +388,7 @@ public class assemble {
                     throw new IllegalArgumentException(
                             "Out of range: " + delta);
                 }
-                imm = delta & bitMask;
+                imm = (int) (getWordAddress(delta) & bitMask);
                 debug.printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", byte_addr,
                         raw, addressLabelDict.get(raw));
             } else if (constLabelDict.containsKey(raw)) {

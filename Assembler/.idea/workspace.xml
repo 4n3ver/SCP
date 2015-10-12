@@ -29,8 +29,8 @@
       <file leaf-file-name="assemble.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assemble.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7527174">
-              <caret line="431" column="56" selection-start-line="431" selection-start-column="56" selection-end-line="431" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.44698206">
+              <caret line="390" column="29" selection-start-line="390" selection-start-column="29" selection-end-line="390" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#Radix#0;class#assemble#0" expanded="false" />
@@ -52,6 +52,7 @@
                 <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
                 <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
                 <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
+                <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
                 <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
                 <element signature="class#Handler#0;class#assemble#0" expanded="false" />
               </folding>
@@ -147,7 +148,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="assemble" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PROGRAM_PARAMETERS" value="-v ../Project2/Sorter2.a32" />
+      <option name="PROGRAM_PARAMETERS" value="-v ../Project2/Test2.a32" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -432,12 +433,12 @@
       <workItem from="1443991155906" duration="52511000" />
       <workItem from="1444499358587" duration="34604000" />
       <workItem from="1444590489262" duration="357000" />
-      <workItem from="1444591069022" duration="5942000" />
+      <workItem from="1444591069022" duration="7740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93414000" />
+    <option name="totallyTimeSpent" value="95212000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -451,7 +452,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17316018" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" x="227" y="829" width="896" height="499" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30627707" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" x="227" y="829" width="896" height="499" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33770493" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.07986871" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -510,7 +511,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="24" />
+      <option name="time" value="25" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -544,6 +545,7 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
@@ -575,6 +577,7 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
@@ -606,6 +609,7 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
@@ -700,8 +704,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assemble.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7527174">
-          <caret line="431" column="56" selection-start-line="431" selection-start-column="56" selection-end-line="431" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.44698206">
+          <caret line="390" column="29" selection-start-line="390" selection-start-column="29" selection-end-line="390" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#Radix#0;class#assemble#0" expanded="false" />
@@ -723,6 +727,7 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
