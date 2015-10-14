@@ -11,7 +11,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * {@link assemble} is a messy class that seems to be able to convert Test2.a32
+ * and Sorter2.a32 to Test2.mif and Sorter2.mif correctly.
+ *
  * @author Yoel Ivan (yivan3@gatech.edu)
+ * @author Wenduo Yang (wyang73@gatech.edu)
+ * @version 0.0a
  */
 public class assemble {
     public enum Radix {
@@ -180,6 +185,7 @@ public class assemble {
                     } else {
                         Matcher parsed = instructionParser.matcher(line);
                         if (parsed.matches()) {
+                            target.println(formatComment(parsed.group(0)));
                             instrsHandlerDict.get(
                                     parsed.group(1).toLowerCase()).processArgs(
                                     parsed);
@@ -370,40 +376,36 @@ public class assemble {
      * @return processed immediate value in 16-bit binary
      */
     private static String parsePCRel(String raw) {
-        int pcrel;
+        long delta;
         try {
-            long val = parseOffset(raw);
-            if (val < -32768 && val > 32767) {
-                throw new IllegalArgumentException(
-                        "Out of range: " + val);
-            }
-            pcrel = (int) (val & 0xFFFF);
+            delta = parseOffset(raw);
         } catch (Exception e) {
             if (addressLabelDict.containsKey(raw)) {
-                int delta = (int) (addressLabelDict.get(raw) - byte_addr - 4);
-                if (delta < -32768 && delta > 32767) {
-                    throw new IllegalArgumentException(
-                            "Out of range: " + delta);
-                }
-                pcrel = (int) (getWordAddress(delta) & 0xFFFF);
+                delta = getWordAddress(
+                        addressLabelDict.get(raw) - byte_addr - 4);
+                ;
                 debug.printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", byte_addr,
                         raw, addressLabelDict.get(raw));
             } else if (constLabelDict.containsKey(raw)) {
-                int delta = (int) (constLabelDict.get(raw) - byte_addr - 4);
-                if (delta < -32768 && delta > 32767) {
-                    throw new IllegalArgumentException(
-                            "Out of range: " + delta);
-                }
-                pcrel = (int) (getWordAddress(delta) & 0xFFFF);
+                // assume that .NAME value is in word addressing instead of
+                // byte addressing
+                delta = constLabelDict.get(raw) -
+                        getWordAddress(byte_addr + 4);
             } else {
                 throw new IllegalArgumentException(
                         raw + " is not on the dictionary: " +
                                 constLabelDict.toString());
             }
         }
-        String result = String.format("%16s", Integer.toBinaryString(pcrel))
+        if (delta < -32768 && delta > 32767) {
+            throw new IllegalArgumentException(
+                    "Out of range: " + delta);
+        }
+        String result = String.format("%16s",
+                Integer.toBinaryString((int) (delta & 0xFFFF)))
                 .replace(' ', '0');
-        debug.printf("PCREL: raw: %s -> %s(%d)\n", raw, result, result.length());
+        debug.printf("PCREL: raw: %s -> %s(%d)\n", raw, result,
+                result.length());
         return result;
     }
 
@@ -417,42 +419,30 @@ public class assemble {
      * @return processed immediate value in 16-bit binary
      */
     private static String parseImm(String raw, int bitMask) {
-        int imm;
+        long val;
         try {
-            long val = parseOffset(raw);
-            if (val < -32768 && val > 32767) {
-                System.err.printf(
-                        "[WARNING] some information in %s might be loss\n",
-                        raw);
-            }
-            imm = (int) (val & bitMask);
+            val = parseOffset(raw);
         } catch (Exception e) {
             if (addressLabelDict.containsKey(raw)) {
-                long val = addressLabelDict.get(raw);
-                if (val < -32768 && val > 32767) {
-                    System.err
-                            .printf("[WARNING] some information in %s might " +
-                                            "be loss\n",
-                                    raw);
-                }
-                imm = (int) (val & bitMask);
+                val = getWordAddress(addressLabelDict.get(raw));
                 debug.printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", byte_addr,
                         raw, addressLabelDict.get(raw));
             } else if (constLabelDict.containsKey(raw)) {
-                long val = constLabelDict.get(raw);
-                if (val < -32768 && val > 32767) {
-                    System.err.printf(
-                            "[WARNING] some information in %s might be loss\n",
-                            raw);
-                }
-                imm = (int) (val & bitMask);
+                // assume that .NAME value is in word addressing instead of
+                // byte addressing
+                val = constLabelDict.get(raw);
             } else {
                 throw new IllegalArgumentException(
                         raw + " is not on the dictionary: " +
                                 constLabelDict.toString());
             }
         }
-        String result = String.format("%16s", Integer.toBinaryString(imm))
+        if (val < -32768 && val > 32767) {
+            System.err.printf(
+                    "[WARNING] some information in %s might be loss\n", raw);
+        }
+        String result = String.format("%16s",
+                Integer.toBinaryString((int) (val & bitMask)))
                 .replace(' ', '0');
         debug.printf("IMM: raw: %s -> %s(%d)\n", raw, result, result.length());
         return result;
@@ -759,7 +749,6 @@ public class assemble {
                 "beqz", "bltz", "bltez", "bnez", "bgtez", "bgtz"
         };
         Handler rd_imm = args -> {
-            target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) + "0000" +
                             parsePCRel(args.group(5)) +
@@ -772,7 +761,6 @@ public class assemble {
                 "nei", "gtei", "gti"
         };
         Handler rd_rs1_imm = args -> {
-            target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) +
                             regDict.get(args.group(3).toLowerCase()) +
@@ -784,7 +772,6 @@ public class assemble {
                 "bf", "beq", "blt", "blte", "bt", "bne", "bgte", "bgt"
         };
         Handler rs1_rs2_imm = args -> {
-            target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) +
                             regDict.get(args.group(3).toLowerCase()) +
@@ -797,7 +784,6 @@ public class assemble {
                 "eq", "lt", "lte", "t", "ne", "gte", "gt"
         };
         Handler rd_rs1_rs2 = args -> {
-            target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) +
                             regDict.get(args.group(3).toLowerCase()) +
@@ -807,10 +793,9 @@ public class assemble {
         };
 
         String[] rd_imm_rs1_list = {
-                "lw"
+                "lw", "jal"
         };
         Handler rd_imm_rs1 = args -> {
-            target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) +
                             regDict.get(args.group(6).toLowerCase()) +
@@ -822,7 +807,6 @@ public class assemble {
                 "sw"
         };
         Handler rs2_imm_rs1 = args -> {
-            target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
                     regDict.get(args.group(6).toLowerCase()) +
                             regDict.get(args.group(2).toLowerCase()) +
@@ -850,26 +834,11 @@ public class assemble {
             dict.put(name, rs2_imm_rs1);
         }
         dict.put("mvhi", args -> {
-            target.println(formatComment(args.group(0)));
             target.println(formatInstruction(
                     regDict.get(args.group(2).toLowerCase()) + "0000" +
                             parseImmHi(args.group(5)) +
                             opcodeDict.get(args.group(1).toLowerCase())));
         });
-        dict.put("jal", args -> {
-            target.println(formatComment(args.group(0)));
-            String messyOffset = String.format("%16s",
-                    Integer.toBinaryString(
-                            (Integer.parseInt(parseImmLo(args.group(5)),
-                                    2) / 4)))
-                    .replace(' ', '0');
-            target.println(formatInstruction(
-                    regDict.get(args.group(2).toLowerCase()) +
-                            regDict.get(args.group(6).toLowerCase()) +
-                            messyOffset +
-                            opcodeDict.get(args.group(1).toLowerCase())));
-        });
-
         dict.putAll(buildPseudoInstrsHandlerDict());
         return Collections.unmodifiableMap(dict);
     }
