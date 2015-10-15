@@ -14,6 +14,7 @@ Assembler
 
   $ java -jar assembler.jar -v Project2/Test2.a32
 
+- resulting *\*.mif* file will be located on the same path as the source *\*.a32* file
 - All files tested and compiled under::
 
   > java version "1.8.0_60"
