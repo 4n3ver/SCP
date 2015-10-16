@@ -1,3 +1,5 @@
+package asm;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,6 +12,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static asm.AssembleUtil.*;
+
 /**
  * {@link assemble} is a messy class that seems to be able to convert Test2.a32
  * and Sorter2.a32 to Test2.mif and Sorter2.mif correctly.
@@ -19,34 +23,6 @@ import java.util.regex.Pattern;
  * @version 0.0a
  */
 public class assemble {
-    public enum Radix {
-        DEC("DEC", "d", 10),
-        hex("HEX", "x", 16),
-        HEX("HEX", "X", 16);
-
-        private final String rep;
-        private final String format;
-        private final int num_rep;
-
-        Radix(String name, String printFormat, int numRep) {
-            this.rep = name;
-            this.format = printFormat;
-            this.num_rep = numRep;
-        }
-
-        public String getName() {
-            return rep;
-        }
-
-        public String getFormat(int len) {
-            return "%0" + len + format;
-        }
-
-        public int getDecRep() {
-            return num_rep;
-        }
-    }
-
     public enum PrimaryOP {
         ALU_R("0000"),
         ALU_I("1000"),
@@ -68,24 +44,18 @@ public class assemble {
         }
     }   // not actually useful
 
-    private static final int WIDTH = 32;    // multiple of 8 only!
-    private static final int DEPTH = 2048;
-    private static final Radix ADDR_RADIX = Radix.hex;
-    private static final Radix DATA_RADIX = Radix.hex;
-    private static final String DEAD_MEAT = "DEAD";
-    private static final String ERROR_TAG = "[ERROR] ";
-
     // read only maps
-    private static Map<String, Handler> instrsHandlerDict;
-    private static Map<String, Handler> assemblerDirDict;
-    private static Map<String, String> opcodeDict;
-    private static Map<String, String> regDict;
+    static Map<String, Handler> instrsHandlerDict;
+    static Map<String, Handler> assemblerDirDict;
+    static Map<String, String> opcodeDict;
+    static Map<String, String> regDict;
 
     // r-w maps
     private static Map<String, Long> constLabelDict;
     private static Map<String, Long> addressLabelDict;
 
     private static String registerPattern;
+    private static String mifPath;
     private static DebugVerbose debug;
     private static PrintWriter target;
     private static long byte_addr;
@@ -99,7 +69,8 @@ public class assemble {
         String asmPath = parseArgs(args);
 
         File asmFile = new File(asmPath);
-        target = writeMif(asmPath.replace(".a32", ".mif"));
+        mifPath = asmPath.replace(".a32", ".mif");
+        target = writeMif(mifPath);
 
         buildDictionary();
         process(asmFile);
@@ -120,7 +91,8 @@ public class assemble {
         target.printf("DATA_RADIX=%s;\n", DATA_RADIX.getName());
         target.printf("CONTENT BEGIN\n");
         Pattern assemblerParser = Pattern.compile("(?:(\\.[A-Za-z]+)\\s+(?:" +
-                "([A-Za-z][a-zA-Z0-9]+)\\s*=\\s*([A-Za-z0-9]+)\\b|" +
+                "([A-Za-z][a-zA-Z0-9]+)\\s*=\\s*((?:\\-?[0-9]+|[A-Za-z0-9]+)" +
+                ")\\b|" +
                 "([A-Za-z0-9]+)\\b))");
         Pattern instructionParser = Pattern.compile(
                 "([A-Za-z]+)(?:\\s+?(?:(" + registerPattern +
@@ -137,7 +109,8 @@ public class assemble {
         asmScanner = openAsm(src);
         processInstruction(asmScanner, assemblerParser, instructionParser);
         asmScanner.close();
-        target.print(fillDEADMEAT(byte_addr, DEPTH * WIDTH / 8 - 1));
+        target.print(fillDEADMEAT(byte_addr,
+                DEPTH * WIDTH / 8 - 1));
         target.print("END;");
     }
 
@@ -169,9 +142,11 @@ public class assemble {
                             if (!parsed.group(1).equals(".NAME")) {
                                 if (parsed.group(1).equals(".ORIG")) {
                                     long newByte_addr =
-                                            parseAddr(parsed.group(4));
+                                            parseAddr(
+                                                    parsed.group(4));
                                     if (newByte_addr > byte_addr) {
-                                        target.print(fillDEADMEAT(byte_addr,
+                                        target.print(fillDEADMEAT(
+                                                byte_addr,
                                                 newByte_addr - 1));
                                     }
                                 }
@@ -198,12 +173,20 @@ public class assemble {
                 }
             } catch (Exception e) {
                 debug.printStackTrace(e);
-                System.err.println(
-                        ERROR_TAG + "at line " + line_num + ": " +
-                                line);
-                System.exit(-1);
+                src.close();
+                cleanExit("at line " + line_num + ": " + line);
             }
         }
+    }
+
+    /**
+     * If asssembling process fail, remove incomplete mif file
+     */
+    static void cleanExit(String errMsg) {
+        System.err.println(ERROR_TAG + errMsg);
+        target.close();
+        new File(mifPath).delete();
+        System.exit(-1);
     }
 
     /**
@@ -240,10 +223,7 @@ public class assemble {
                         }
                     } else if (line.endsWith(":")) {
                         String label = line.substring(0, line.length() - 1);
-                        if (isReserved(label)) {
-                            throw new IllegalArgumentException(
-                                    "invalid used of reserved word");
-                        }
+                        checkReserved(label);
                         debug.println(
                                 "ADDR_LABEL: new label " + label + " at " +
                                         byte_addr);
@@ -254,220 +234,27 @@ public class assemble {
                 }
             } catch (Exception e) {
                 debug.printStackTrace(e);
-                System.err.println(
-                        ERROR_TAG + "at line " + line_num + ": " +
-                                line);
-                System.exit(-1);
+                src.close();
+                cleanExit("at line " + line_num + ": " + line);
             }
         }
         debug.println("ADDR_LABEL: " + addressLabelDict.toString());
     }
 
     /**
-     * Format actual instruction read from *.a32 file as a comment in the
-     * *.mif file
-     *
-     * @param actualInstruction actual instruction (no longer pseudo) read from
-     *                          *.a32 file
-     * @return formatted instruction ready to be printed as comment on .mif
-     * file
-     */
-    private static String formatComment(String actualInstruction) {
-        return String.format("-- @ 0x" + ADDR_RADIX.getFormat(WIDTH / 4) +
-                        " : %s", byte_addr,
-                actualInstruction.toUpperCase().replaceFirst("\\s+", "\t"));
-    }
-
-    /**
-     * Format translated instruction to the *.mif file
-     *
-     * @param codedInstruction translated instruction in 32-bit binary string
-     * @return formatted translated instruction ready to be printed on .mif
-     */
-    private static String formatInstruction(String codedInstruction) {
-        assert codedInstruction.length() == WIDTH;
-        String data = String.format(ADDR_RADIX.getFormat(WIDTH / 4) + " : " +
-                        DATA_RADIX.getFormat(WIDTH / 4) + ";",
-                getWordAddress(byte_addr),
-                Long.parseLong(codedInstruction, 2));
-        debug.println("DATA: " + data + " [" + codedInstruction + "]");
-        return data;
-    }
-
-    /**
-     * Print DEAD from <code>bytefrom</code> to <code>byteuntil</code> in the
-     * memory.
-     *
-     * @param bytefrom  initial address to be filled with DEAD
-     * @param byteuntil last address to be filled with DEAD
-     * @return DEAD from <code>bytefrom</code> to <code>byteuntil</code>
-     * ready to be printed on *.mif
-     */
-    private static String fillDEADMEAT(long bytefrom, long byteuntil) {
-        long delta = getWordAddress(byteuntil) - getWordAddress(bytefrom);
-        if (delta > 0) {
-            return String.format("[" + ADDR_RADIX.getFormat(
-                            bytefrom == 0 ? WIDTH / 4 :
-                                    getEffectiveWordAddrLen()) + ".." +
-                            ADDR_RADIX.getFormat(
-                                    bytefrom == 0 ? WIDTH / 4 :
-                                            getEffectiveWordAddrLen()) +
-                            "] : %s;\n", getWordAddress(bytefrom),
-                    getWordAddress(byteuntil), DEAD_MEAT);
-        } else if (delta == 0) {
-            return String.format(ADDR_RADIX.getFormat(WIDTH / 4) + " : %s;\n",
-                    getWordAddress(byteuntil), DEAD_MEAT);
-        }
-        throw new IllegalArgumentException();
-    }
-
-    /**
      * Check if given <code>name</code> is a reserved word
      *
      * @param name {@link String} to be checked
-     * @return <code>true</code> if <code>name</code> is reserved,
      * <code>false</code> otherwise
      */
-    private static boolean isReserved(String name) {
-        return opcodeDict.containsKey(name) || regDict.containsKey(name);
-    }
-
-    /**
-     * Same as <code>parseOffset</code> except this does not allow negative
-     * arguments.
-     *
-     * @param number string representation of the address
-     * @return parsed address as <code>long</code>
-     */
-    private static long parseAddr(String number) {
-        long val = parseOffset(number);
-        if (val < 0) {
-            throw new UnsupportedOperationException("Parsed negative value!");
-        }
-        return val;
-    }
-
-    /**
-     * Parse various string representation of offset into <code>long</code>.
-     *
-     * @param number string representation of the offset
-     * @return parsed offset as <code>long</code>
-     */
-    private static long parseOffset(String number) {
-        String radixId = number.length() > 2 ? number.substring(0, 2) : "";
-        long val;
-        if (radixId.equals("0x")) {
-            val = Long.parseLong(number.replace("0x", ""), 16);
-        } else if (radixId.equals("0b")) {
-            val = Long.parseLong(number.replace("0b", ""), 2);
-        } else {
-            val = Long.parseLong(number);
-        }
-        debug.println(
-                "parseOffset: " + number + " -> " + Long.toBinaryString(val));
-        return val;
-    }
-
-    /**
-     * Process IMMEDIATE value which can be label or raw value into a
-     * valid value.
-     *
-     * @param raw raw immediate value read
-     * @return processed immediate value in 16-bit binary
-     */
-    private static String parsePCRel(String raw) {
-        long delta;
-        try {
-            delta = parseOffset(raw);
-        } catch (Exception e) {
-            if (addressLabelDict.containsKey(raw)) {
-                delta = getWordAddress(
-                        addressLabelDict.get(raw) - byte_addr - 4);
-                ;
-                debug.printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", byte_addr,
-                        raw, addressLabelDict.get(raw));
-            } else if (constLabelDict.containsKey(raw)) {
-                // assume that .NAME value is in word addressing instead of
-                // byte addressing
-                delta = constLabelDict.get(raw) -
-                        getWordAddress(byte_addr + 4);
-            } else {
-                throw new IllegalArgumentException(
-                        raw + " is not on the dictionary: " +
-                                constLabelDict.toString());
-            }
-        }
-        if (delta < -32768 && delta > 32767) {
+    private static void checkReserved(String name) {
+        if (opcodeDict.containsKey(name) || regDict.containsKey(name)) {
             throw new IllegalArgumentException(
-                    "Out of range: " + delta);
+                    "invalid use of reserved word");
+        } else if (constLabelDict.containsKey(name) ||
+                addressLabelDict.containsKey(name)) {
+            throw new IllegalArgumentException("Duplicate label is used");
         }
-        String result = String.format("%16s",
-                Integer.toBinaryString((int) (delta & 0xFFFF)))
-                .replace(' ', '0');
-        debug.printf("PCREL: raw: %s -> %s(%d)\n", raw, result,
-                result.length());
-        return result;
-    }
-
-    /**
-     * Process IMMEDIATE value which can be label or raw value into a
-     * valid value.
-     *
-     * @param raw     raw immediate value read
-     * @param bitMask mask to determined which part of the parsed value to
-     *                be returned
-     * @return processed immediate value in 16-bit binary
-     */
-    private static String parseImm(String raw, int bitMask) {
-        long val;
-        try {
-            val = parseOffset(raw);
-        } catch (Exception e) {
-            if (addressLabelDict.containsKey(raw)) {
-                val = getWordAddress(addressLabelDict.get(raw));
-                debug.printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", byte_addr,
-                        raw, addressLabelDict.get(raw));
-            } else if (constLabelDict.containsKey(raw)) {
-                // assume that .NAME value is in word addressing instead of
-                // byte addressing
-                val = constLabelDict.get(raw);
-            } else {
-                throw new IllegalArgumentException(
-                        raw + " is not on the dictionary: " +
-                                constLabelDict.toString());
-            }
-        }
-        if (val < -32768 && val > 32767) {
-            System.err.printf(
-                    "[WARNING] some information in %s might be loss\n", raw);
-        }
-        String result = String.format("%16s",
-                Integer.toBinaryString((int) (val & bitMask)))
-                .replace(' ', '0');
-        debug.printf("IMM: raw: %s -> %s(%d)\n", raw, result, result.length());
-        return result;
-    }
-
-    /**
-     * Process IMMEDIATE value which can be label or raw value into a
-     * valid value. This will take 16-LSB.
-     *
-     * @param raw raw immediate value read
-     * @return processed immediate value in 16-bit binary
-     */
-    private static String parseImmLo(String raw) {
-        return parseImm(raw, 0xFFFF);
-    }
-
-    /**
-     * Process IMMEDIATE value which can be label or raw value into a
-     * valid value. This will take 16-MSB.
-     *
-     * @param raw raw immediate value read
-     * @return processed immediate value in 16-bit binary
-     */
-    private static String parseImmHi(String raw) {
-        return parseImm(raw, 0xFFFF0000).substring(0, 16);
     }
 
     /**
@@ -483,9 +270,7 @@ public class assemble {
             debug = new DebugVerbose.DisableDebug();
             asmPath = args[0];
         } else {
-            System.err.println(
-                    ERROR_TAG + "usage: assemble [-v] PATH_TO_ASM_FILE");
-            System.exit(-1);
+            cleanExit("usage: assemble [-v] PATH_TO_ASM_FILE");
         }
         return asmPath;
     }
@@ -499,10 +284,8 @@ public class assemble {
         try {
             asmScanner = new Scanner(asm);
         } catch (FileNotFoundException e) {
-            System.err.println(
-                    ERROR_TAG + asm.getAbsolutePath() + " not found!");
             debug.printStackTrace(e);
-            System.exit(-1);
+            cleanExit(asm.getAbsolutePath() + " not found!");
         }
         return asmScanner;
     }
@@ -525,38 +308,38 @@ public class assemble {
                 respond = consoleIn.nextLine().trim().toLowerCase();
             }
             if (respond.equals("n")) {
-                System.out.println("Aborting operation...");
-                System.exit(-1);
+                cleanExit("Aborting operation...");
             }
         }
         FileWriter newMifFile = null;
         try {
             newMifFile = new FileWriter(targetMif);
         } catch (IOException e) {
-            System.err.println(ERROR_TAG + "Failed to create .mif file: " +
-                    e.getMessage());
             debug.printStackTrace(e);
-            System.exit(-1);
+            cleanExit("Failed to create .mif file: " + e.getMessage());
         }
+        assert newMifFile != null;
         return new PrintWriter(newMifFile);
     }
 
+    // Accessor methods - self explanatory
+    static long getCurrentByteAddr() {
+        return byte_addr;
+    }
+
+    static Map<String, Long> getAddressLabelDict() {
+        return Collections.unmodifiableMap(addressLabelDict);
+    }
+
+    static Map<String, Long> getConstLabelDict() {
+        return Collections.unmodifiableMap(constLabelDict);
+    }
+
+    static DebugVerbose getDebug() {
+        return debug;
+    }
+
     // DRAGON AHEAD - TOTAL MESS
-
-    private static int getAddrLen() {
-        return (int) Math.ceil(WIDTH /
-                (Math.log(ADDR_RADIX.getDecRep()) / Math.log(2)));
-    }
-
-    private static int getEffectiveWordAddrLen() {
-        return (int) Math.ceil(Math.log(DEPTH * getAddrLen()) /
-                Math.log(ADDR_RADIX.getDecRep()));
-    }
-
-    private static long getWordAddress(long byteaddr) {
-        return byteaddr / (WIDTH / 8);
-    }
-
     // BUILDING MAPS - SELF EXPLANATORY
     private static void buildDictionary() {
         opcodeDict = buildOpCodeDict();
@@ -748,71 +531,59 @@ public class assemble {
         String[] rd_imm_list = {
                 "beqz", "bltz", "bltez", "bnez", "bgtez", "bgtz"
         };
-        Handler rd_imm = args -> {
-            target.println(formatInstruction(
-                    regDict.get(args.group(2).toLowerCase()) + "0000" +
-                            parsePCRel(args.group(5)) +
-                            opcodeDict.get(args.group(1).toLowerCase())));
-        };
+        Handler rd_imm = args -> target.println(formatInstruction(
+                regDict.get(args.group(2).toLowerCase()) + "0000" +
+                        parsePCRel(args.group(5)) +
+                        opcodeDict.get(args.group(1).toLowerCase())));
 
         String[] rd_rs1_imm_list = {
                 "addi", "subi", "andi", "ori", "xori", "nandi", "nori",
                 "xnori", "fi", "eqi", "lti", "ltei", "ti",
                 "nei", "gtei", "gti"
         };
-        Handler rd_rs1_imm = args -> {
-            target.println(formatInstruction(
-                    regDict.get(args.group(2).toLowerCase()) +
-                            regDict.get(args.group(3).toLowerCase()) +
-                            parseImmLo(args.group(4)) +
-                            opcodeDict.get(args.group(1).toLowerCase())));
-        };
+        Handler rd_rs1_imm = args -> target.println(formatInstruction(
+                regDict.get(args.group(2).toLowerCase()) +
+                        regDict.get(args.group(3).toLowerCase()) +
+                        parseImmLo(args.group(4)) +
+                        opcodeDict.get(args.group(1).toLowerCase())));
 
         String[] rs1_rs2_imm_list = {
                 "bf", "beq", "blt", "blte", "bt", "bne", "bgte", "bgt"
         };
-        Handler rs1_rs2_imm = args -> {
-            target.println(formatInstruction(
-                    regDict.get(args.group(2).toLowerCase()) +
-                            regDict.get(args.group(3).toLowerCase()) +
-                            parsePCRel(args.group(4)) +
-                            opcodeDict.get(args.group(1).toLowerCase())));
-        };
+        Handler rs1_rs2_imm = args -> target.println(formatInstruction(
+                regDict.get(args.group(2).toLowerCase()) +
+                        regDict.get(args.group(3).toLowerCase()) +
+                        parsePCRel(args.group(4)) +
+                        opcodeDict.get(args.group(1).toLowerCase())));
 
         String[] rd_rs1_rs2_list = {
                 "add", "sub", "and", "or", "xor", "nand", "nor", "xnor", "f",
                 "eq", "lt", "lte", "t", "ne", "gte", "gt"
         };
-        Handler rd_rs1_rs2 = args -> {
-            target.println(formatInstruction(
-                    regDict.get(args.group(2).toLowerCase()) +
-                            regDict.get(args.group(3).toLowerCase()) +
-                            regDict.get(args.group(4).toLowerCase()) +
-                            "000000000000" +
-                            opcodeDict.get(args.group(1).toLowerCase())));
-        };
+        Handler rd_rs1_rs2 = args -> target.println(formatInstruction(
+                regDict.get(args.group(2).toLowerCase()) +
+                        regDict.get(args.group(3).toLowerCase()) +
+                        regDict.get(args.group(4).toLowerCase()) +
+                        "000000000000" +
+                        opcodeDict.get(args.group(1).toLowerCase())));
 
         String[] rd_imm_rs1_list = {
                 "lw", "jal"
         };
-        Handler rd_imm_rs1 = args -> {
-            target.println(formatInstruction(
-                    regDict.get(args.group(2).toLowerCase()) +
-                            regDict.get(args.group(6).toLowerCase()) +
-                            parseImmLo(args.group(5)) +
-                            opcodeDict.get(args.group(1).toLowerCase())));
-        };
+        Handler rd_imm_rs1 = args -> target.println(formatInstruction(
+                regDict.get(args.group(2).toLowerCase()) +
+                        regDict.get(args.group(6).toLowerCase()) +
+                        parseImmLo(args.group(5)) +
+                        opcodeDict.get(args.group(1).toLowerCase())));
 
         String[] rs2_imm_rs1_list = {
                 "sw"
         };
-        Handler rs2_imm_rs1 = args -> {
-            target.println(formatInstruction(
-                    regDict.get(args.group(6).toLowerCase()) +
-                            regDict.get(args.group(2).toLowerCase()) +
-                            parseImmLo(args.group(5)) +
-                            opcodeDict.get(args.group(1).toLowerCase())));
-        };
+        Handler rs2_imm_rs1 = args -> target.println(formatInstruction(
+                regDict.get(args.group(6).toLowerCase()) +
+                        regDict.get(args.group(2).toLowerCase()) +
+                        parseImmLo(args.group(5)) +
+                        opcodeDict.get(args.group(1).toLowerCase())));
 
         Map<String, Handler> dict = new HashMap<>();
         for (String name : rd_imm_list) {
@@ -833,12 +604,10 @@ public class assemble {
         for (String name : rs2_imm_rs1_list) {
             dict.put(name, rs2_imm_rs1);
         }
-        dict.put("mvhi", args -> {
-            target.println(formatInstruction(
-                    regDict.get(args.group(2).toLowerCase()) + "0000" +
-                            parseImmHi(args.group(5)) +
-                            opcodeDict.get(args.group(1).toLowerCase())));
-        });
+        dict.put("mvhi", args -> target.println(formatInstruction(
+                regDict.get(args.group(2).toLowerCase()) + "0000" +
+                        parseImmHi(args.group(5)) +
+                        opcodeDict.get(args.group(1).toLowerCase()))));
         dict.putAll(buildPseudoInstrsHandlerDict());
         return Collections.unmodifiableMap(dict);
     }
@@ -847,11 +616,9 @@ public class assemble {
     private static Map<String, Handler> buildAssemblerDirDict() {
         Map<String, Handler> dict = new HashMap<>();
         dict.put(".NAME", args -> {
-            if (isReserved(args.group(2))) {
-                throw new IllegalArgumentException(
-                        "invalid used of reserved word");
-            }
-            constLabelDict.put(args.group(2), parseAddr(args.group(3)));
+            checkReserved(args.group(2));
+            constLabelDict.put(args.group(2),
+                    parseOffset(args.group(3), WIDTH));
             debug.println("NAME_LABEL: new label " + args.group(2) + "->0x" +
                     Long.toHexString(constLabelDict.get(args.group(2)))
                             .toUpperCase());
@@ -863,9 +630,8 @@ public class assemble {
             byte_addr = newByte_addr;
         });
         dict.put(".WORD", args -> {
-            target.println(formatComment(args.group(0)));
-            target.println(formatInstruction(
-                    Long.toBinaryString(parseOffset(args.group(4)))));
+            target.println(
+                    formatInstruction(parseImm(args.group(4), 0xFFFFFFFF)));
             byte_addr += 4;
         });
         return Collections.unmodifiableMap(dict);

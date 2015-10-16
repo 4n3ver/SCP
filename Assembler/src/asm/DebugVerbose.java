@@ -1,23 +1,25 @@
+package asm;
 
 /**
  * Debug message printing interface
  *
  * @author Yoel Ivan (yivan3@gatech.edu)
+ * @version 0.0a
  */
 public interface DebugVerbose {
-    public static String DEBUG_TAG = "[DEBUG] ";
+    String DEBUG_TAG = "[DEBUG] ";
 
-    public void println(String msg);
-    public void printf(String msg, Object... args);
-    public void print(String msg);
-    public void printStackTrace(Exception e);
+    void println(String msg);
+    void printf(String msg, Object... args);
+    void print(String msg);
+    void printStackTrace(Exception e);
 
     /**
      * Initializes {@link DebugVerbose} with this class if -d option enabled.
      *
      * @author Yoel Ivan (yivan3@gatech.edu)
      */
-    public class EnableDebug implements DebugVerbose {
+    class EnableDebug implements DebugVerbose {
 
         public EnableDebug() {
             println("Debug mode enabled!");
@@ -52,7 +54,7 @@ public interface DebugVerbose {
      *
      * @author Yoel Ivan (yivan3@gatech.edu)
      */
-    public class DisableDebug implements DebugVerbose {
+    class DisableDebug implements DebugVerbose {
         @Override
         public void println(String msg) {
 
