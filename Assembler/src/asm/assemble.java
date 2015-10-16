@@ -449,80 +449,29 @@ public class assemble {
         return Collections.unmodifiableMap(dict);
     }
 
-    private static Map<String, Handler> buildPseudoInstrsHandlerDict() {
+    // grouping number can be found at http://regexr.com/3bv8i
+    private static Map<String, Handler> buildAssemblerDirDict() {
         Map<String, Handler> dict = new HashMap<>();
-        dict.put("br", args -> {
-            String actual = "beq r6, r6, " + args.group(7);
-            debug.println(
-                    "converting (" + args.group(0) + ") to (" + actual + ")");
-            args.reset(actual);
-            args.matches();
-            instrsHandlerDict.get("beq").processArgs(args);
+        dict.put(".NAME", args -> {
+            checkReserved(args.group(2));
+            constLabelDict.put(args.group(2),
+                    parseOffset(args.group(3), WIDTH));
+            debug.println("NAME_LABEL: new label " + args.group(2) + "->0x" +
+                    Long.toHexString(constLabelDict.get(args.group(2)))
+                            .toUpperCase());
         });
-        dict.put("not", args -> {
-            String actual = "nand " + args.group(2) + ", " +
-                    args.group(3) + ", " + args.group(3);
-            debug.println(
-                    "converting (" + args.group(0) + ") to (" + actual + ")");
-            args.reset(actual);
-            args.matches();
-            instrsHandlerDict.get("nand").processArgs(args);
+        dict.put(".ORIG", args -> {
+            long newByte_addr = parseAddr(args.group(4));
+            debug.printf("MEM_ADDR set to 0x%x from 0x%x\n", newByte_addr,
+                    byte_addr);
+            byte_addr = newByte_addr;
         });
-        dict.put("call", args -> {
-            String actual = "jal ra, " + args.group(7) + "(" +
-                    args.group(8) + ")";
-            debug.println(
-                    "converting (" + args.group(0) + ") to (" + actual + ")");
-            args.reset(actual);
-            args.matches();
-            instrsHandlerDict.get("jal").processArgs(args);
-        });
-        dict.put("ret", args -> {
-            String actual = "jal r9, 0(ra)";
-            debug.println(
-                    "converting (" + args.group(0) + ") to (" + actual + ")");
-            args.reset(actual);
-            args.matches();
-            instrsHandlerDict.get("jal").processArgs(args);
-        });
-        dict.put("jmp", args -> {
-            String actual = "jal r9, " + args.group(7) + "(" +
-                    args.group(8) + ")";
-            debug.println(
-                    "converting (" + args.group(0) + ") to (" + actual + ")");
-            args.reset(actual);
-            args.matches();
-            instrsHandlerDict.get("jal").processArgs(args);
-        });
-        dict.put("ble", args -> {
-            String actual = "lte r6, " + args.group(2) + ", " +
-                    args.group(3);
-            debug.println(
-                    "converting (" + args.group(0) + ") to (" + actual + ")");
-            Matcher first = args.pattern().matcher(actual);
-            first.matches();
-            instrsHandlerDict.get("lte").processArgs(first);
+        dict.put(".WORD", args -> {
+            target.println(
+                    formatInstruction(parseImm(args.group(4), 0xFFFFFFFF)));
             byte_addr += 4;
-            actual = "bnez r6, " + args.group(4);
-            args.reset(actual);
-            args.matches();
-            instrsHandlerDict.get("bnez").processArgs(args);
         });
-        dict.put("bge", args -> {
-            String actual = "gte r6, " + args.group(2) + ", " +
-                    args.group(3);
-            debug.println(
-                    "converting (" + args.group(0) + ") to (" + actual + ")");
-            Matcher first = args.pattern().matcher(actual);
-            first.matches();
-            instrsHandlerDict.get("lte").processArgs(first);
-            byte_addr += 4;
-            actual = "bnez r6, " + args.group(4);
-            args.reset(actual);
-            args.matches();
-            instrsHandlerDict.get("bnez").processArgs(args);
-        });
-        return dict;
+        return Collections.unmodifiableMap(dict);
     }
 
     // grouping number can be found at http://regexr.com/3bv78
@@ -611,29 +560,81 @@ public class assemble {
         return Collections.unmodifiableMap(dict);
     }
 
-    // grouping number can be found at http://regexr.com/3bv8i
-    private static Map<String, Handler> buildAssemblerDirDict() {
+    // not actual instruction, implemented by calling handler above
+    private static Map<String, Handler> buildPseudoInstrsHandlerDict() {
         Map<String, Handler> dict = new HashMap<>();
-        dict.put(".NAME", args -> {
-            checkReserved(args.group(2));
-            constLabelDict.put(args.group(2),
-                    parseOffset(args.group(3), WIDTH));
-            debug.println("NAME_LABEL: new label " + args.group(2) + "->0x" +
-                    Long.toHexString(constLabelDict.get(args.group(2)))
-                            .toUpperCase());
+        dict.put("br", args -> {
+            String actual = "beq r6, r6, " + args.group(7);
+            debug.println(
+                    "converting (" + args.group(0) + ") to (" + actual + ")");
+            args.reset(actual);
+            args.matches();
+            instrsHandlerDict.get("beq").processArgs(args);
         });
-        dict.put(".ORIG", args -> {
-            long newByte_addr = parseAddr(args.group(4));
-            debug.printf("MEM_ADDR set to 0x%x from 0x%x\n", newByte_addr,
-                    byte_addr);
-            byte_addr = newByte_addr;
+        dict.put("not", args -> {
+            String actual = "nand " + args.group(2) + ", " +
+                    args.group(3) + ", " + args.group(3);
+            debug.println(
+                    "converting (" + args.group(0) + ") to (" + actual + ")");
+            args.reset(actual);
+            args.matches();
+            instrsHandlerDict.get("nand").processArgs(args);
         });
-        dict.put(".WORD", args -> {
-            target.println(
-                    formatInstruction(parseImm(args.group(4), 0xFFFFFFFF)));
+        dict.put("call", args -> {
+            String actual = "jal ra, " + args.group(7) + "(" +
+                    args.group(8) + ")";
+            debug.println(
+                    "converting (" + args.group(0) + ") to (" + actual + ")");
+            args.reset(actual);
+            args.matches();
+            instrsHandlerDict.get("jal").processArgs(args);
+        });
+        dict.put("ret", args -> {
+            String actual = "jal r9, 0(ra)";
+            debug.println(
+                    "converting (" + args.group(0) + ") to (" + actual + ")");
+            args.reset(actual);
+            args.matches();
+            instrsHandlerDict.get("jal").processArgs(args);
+        });
+        dict.put("jmp", args -> {
+            String actual = "jal r9, " + args.group(7) + "(" +
+                    args.group(8) + ")";
+            debug.println(
+                    "converting (" + args.group(0) + ") to (" + actual + ")");
+            args.reset(actual);
+            args.matches();
+            instrsHandlerDict.get("jal").processArgs(args);
+        });
+        dict.put("ble", args -> {
+            String actual = "lte r6, " + args.group(2) + ", " +
+                    args.group(3);
+            debug.println(
+                    "converting (" + args.group(0) + ") to (" + actual + ")");
+            Matcher first = args.pattern().matcher(actual);
+            first.matches();
+            instrsHandlerDict.get("lte").processArgs(first);
             byte_addr += 4;
+            actual = "bnez r6, " + args.group(4);
+            args.reset(actual);
+            args.matches();
+            instrsHandlerDict.get("bnez").processArgs(args);
         });
-        return Collections.unmodifiableMap(dict);
+        dict.put("bge", args -> {
+            String actual = "gte r6, " + args.group(2) + ", " +
+                    args.group(3);
+            debug.println(
+                    "converting (" + args.group(0) + ") to (" + actual + ")");
+            Matcher first = args.pattern().matcher(actual);
+            first.matches();
+            instrsHandlerDict.get("lte").processArgs(first);
+            byte_addr += 4;
+            actual = "bnez r6, " + args.group(4);
+            args.reset(actual);
+            args.matches();
+            instrsHandlerDict.get("bnez").processArgs(args);
+        });
+        return dict;
     }
 
     public interface Handler {

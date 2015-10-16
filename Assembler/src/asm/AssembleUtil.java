@@ -88,12 +88,8 @@ class AssembleUtil {
     static String fillDEADMEAT(long bytefrom, long byteuntil) {
         long delta = getWordAddress(byteuntil) - getWordAddress(bytefrom);
         if (delta > 0) {
-            return String.format("[" + ADDR_RADIX.getFormat(
-                            bytefrom == 0 ? WIDTH / 4 :
-                                    getEffectiveWordAddrLen()) + ".." +
-                            ADDR_RADIX.getFormat(
-                                    bytefrom == 0 ? WIDTH / 4 :
-                                            getEffectiveWordAddrLen()) +
+            return String.format("[" + ADDR_RADIX.getFormat(WIDTH / 4) + ".." +
+                            ADDR_RADIX.getFormat(WIDTH / 4) +
                             "] : %s;\n", getWordAddress(bytefrom),
                     getWordAddress(byteuntil), DEAD_MEAT);
         } else if (delta == 0) {

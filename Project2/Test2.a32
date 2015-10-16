@@ -237,13 +237,5 @@ Done:
 	sw		t0,OFSLEDG(gp)
 	sw		t0,OFSHEX(gp)
 	bt		t0,t0,Done
-.ORIG 0x1c00
-.NAME testneg1=0xFFFF
-.NAME testneg2=-1
-.WORD testneg1
-.WORD testneg2
-	addi t0, s0, testneg1
-	addi s0, t0, 0xA
-	ble s0, t1, 0x8FFF
-	bge s0, t1, 0xFF
-	
+.ORIG 0x1C00
+	addi s0, t0, -1

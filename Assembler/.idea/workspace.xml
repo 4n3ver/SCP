@@ -34,14 +34,13 @@
       <file leaf-file-name="assemble.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/asm/assemble.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.132208">
-              <caret line="451" column="71" selection-start-line="451" selection-start-column="71" selection-end-line="451" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="149" column="67" selection-start-line="149" selection-start-column="67" selection-end-line="149" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
                 <element signature="method#main#0;class#assemble#0" expanded="false" />
                 <element signature="method#process#0;class#assemble#0" expanded="false" />
-                <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
                 <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
                 <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
                 <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
@@ -54,8 +53,6 @@
                 <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
                 <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
                 <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-                <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-                <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
                 <element signature="class#Handler#0;class#assemble#0" expanded="false" />
               </folding>
             </state>
@@ -65,12 +62,11 @@
       <file leaf-file-name="AssembleUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/asm/AssembleUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-113.13793">
-              <caret line="233" column="23" selection-start-line="233" selection-start-column="23" selection-end-line="233" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
               <folding>
                 <element signature="method#formatComment#0;class#AssembleUtil#0" expanded="false" />
                 <element signature="method#formatInstruction#0;class#AssembleUtil#0" expanded="false" />
-                <element signature="method#fillDEADMEAT#0;class#AssembleUtil#0" expanded="false" />
                 <element signature="method#parseImmHi#0;class#AssembleUtil#0" expanded="false" />
                 <element signature="method#raw2Long#0;class#AssembleUtil#0" expanded="false" />
                 <element signature="method#parseShortImm#0;class#AssembleUtil#0" expanded="false" />
@@ -102,8 +98,8 @@
         <option value="$PROJECT_DIR$/src/AssembleUtil.java" />
         <option value="$PROJECT_DIR$/src/assemble.java" />
         <option value="$PROJECT_DIR$/src/asm/DebugVerbose.java" />
-        <option value="$PROJECT_DIR$/src/asm/assemble.java" />
         <option value="$PROJECT_DIR$/src/asm/AssembleUtil.java" />
+        <option value="$PROJECT_DIR$/src/asm/assemble.java" />
       </list>
     </option>
   </component>
@@ -122,7 +118,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
+    <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -137,7 +133,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -148,63 +144,7 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Assembler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Assembler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Assembler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Assembler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Assembler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Assembler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Assembler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="asm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -515,14 +455,17 @@
       <workItem from="1444803505591" duration="451000" />
       <workItem from="1444948596922" duration="10402000" />
       <workItem from="1444959642998" duration="3563000" />
+      <workItem from="1444967686776" duration="316000" />
+      <workItem from="1445030290408" duration="1076000" />
+      <workItem from="1445031712111" duration="25000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123290000" />
+    <option name="totallyTimeSpent" value="124707000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -533,7 +476,6 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19234973" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" x="227" y="829" width="896" height="499" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33770493" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1673774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -542,12 +484,13 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.44480875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="2153" y="214" width="1467" height="820" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.44480875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="1173" y="299" width="534" height="449" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19234973" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" x="227" y="829" width="896" height="499" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32889125" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32683983" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
@@ -610,7 +553,6 @@
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
-            <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
             <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
             <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
             <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
@@ -623,8 +565,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
         </state>
@@ -633,11 +573,90 @@
     <entry file="file://$PROJECT_DIR$/src/asm/AssembleUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="16" />
+          <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
           <folding>
             <element signature="method#formatComment#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#formatInstruction#0;class#AssembleUtil#0" expanded="false" />
-            <element signature="method#fillDEADMEAT#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#parseImmHi#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#raw2Long#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#parseShortImm#0;class#AssembleUtil#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asm/assemble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="451" column="71" selection-start-line="451" selection-start-column="71" selection-end-line="451" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
+            <element signature="method#main#0;class#assemble#0" expanded="false" />
+            <element signature="method#process#0;class#assemble#0" expanded="false" />
+            <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
+            <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
+            <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
+            <element signature="method#parseArgs#0;class#assemble#0" expanded="false" />
+            <element signature="method#openAsm#0;class#assemble#0" expanded="false" />
+            <element signature="method#writeMif#0;class#assemble#0" expanded="false" />
+            <element signature="method#getAddressLabelDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#getConstLabelDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildDictionary#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
+            <element signature="class#Handler#0;class#assemble#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asm/AssembleUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="233" column="23" selection-start-line="233" selection-start-column="23" selection-end-line="233" selection-end-column="23" />
+          <folding>
+            <element signature="method#formatComment#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#formatInstruction#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#parseImmHi#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#raw2Long#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#parseShortImm#0;class#AssembleUtil#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asm/assemble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="451" column="71" selection-start-line="451" selection-start-column="71" selection-end-line="451" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
+            <element signature="method#main#0;class#assemble#0" expanded="false" />
+            <element signature="method#process#0;class#assemble#0" expanded="false" />
+            <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
+            <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
+            <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
+            <element signature="method#parseArgs#0;class#assemble#0" expanded="false" />
+            <element signature="method#openAsm#0;class#assemble#0" expanded="false" />
+            <element signature="method#writeMif#0;class#assemble#0" expanded="false" />
+            <element signature="method#getAddressLabelDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#getConstLabelDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildDictionary#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
+            <element signature="class#Handler#0;class#assemble#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asm/AssembleUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="233" column="23" selection-start-line="233" selection-start-column="23" selection-end-line="233" selection-end-column="23" />
+          <folding>
+            <element signature="method#formatComment#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#formatInstruction#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#parseImmHi#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#raw2Long#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#parseShortImm#0;class#AssembleUtil#0" expanded="false" />
@@ -654,7 +673,6 @@
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
-            <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
             <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
             <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
             <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
@@ -667,8 +685,46 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
+            <element signature="class#Handler#0;class#assemble#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asm/AssembleUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="16" />
+          <folding>
+            <element signature="method#formatComment#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#formatInstruction#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#parseImmHi#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#raw2Long#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#parseShortImm#0;class#AssembleUtil#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asm/assemble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
+            <element signature="method#main#0;class#assemble#0" expanded="false" />
+            <element signature="method#process#0;class#assemble#0" expanded="false" />
+            <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
+            <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
+            <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
+            <element signature="method#parseArgs#0;class#assemble#0" expanded="false" />
+            <element signature="method#openAsm#0;class#assemble#0" expanded="false" />
+            <element signature="method#writeMif#0;class#assemble#0" expanded="false" />
+            <element signature="method#getAddressLabelDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#getConstLabelDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildDictionary#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
         </state>
@@ -683,7 +739,6 @@
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
-            <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
             <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
             <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
             <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
@@ -696,8 +751,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
         </state>
@@ -712,7 +765,6 @@
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
-            <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
             <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
             <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
             <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
@@ -725,8 +777,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
         </state>
@@ -741,7 +791,6 @@
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
-            <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
             <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
             <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
             <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
@@ -754,8 +803,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
         </state>
@@ -770,7 +817,6 @@
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
-            <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
             <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
             <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
             <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
@@ -783,8 +829,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
         </state>
@@ -820,10 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.63923335">
           <caret line="1745" column="25" selection-start-line="1745" selection-start-column="25" selection-end-line="1745" selection-end-column="25" />
-          <folding>
-            <element signature="e#66828#66829#0" expanded="false" />
-            <element signature="e#66870#66871#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -872,21 +912,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11383928">
           <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="e#554#555#0" expanded="true" />
-            <element signature="e#608#609#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/asm/AssembleUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-113.13793">
-          <caret line="233" column="23" selection-start-line="233" selection-start-column="23" selection-end-line="233" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
           <folding>
             <element signature="method#formatComment#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#formatInstruction#0;class#AssembleUtil#0" expanded="false" />
-            <element signature="method#fillDEADMEAT#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#parseImmHi#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#raw2Long#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#parseShortImm#0;class#AssembleUtil#0" expanded="false" />
@@ -896,14 +931,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/asm/assemble.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.132208">
-          <caret line="451" column="71" selection-start-line="451" selection-start-column="71" selection-end-line="451" selection-end-column="71" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="149" column="67" selection-start-line="149" selection-start-column="67" selection-end-line="149" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
-            <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
             <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
             <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
             <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
@@ -916,8 +950,6 @@
             <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
             <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
-            <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
             <element signature="class#Handler#0;class#assemble#0" expanded="false" />
           </folding>
         </state>
