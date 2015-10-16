@@ -34,15 +34,11 @@
       <file leaf-file-name="assemble.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/asm/assemble.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20833333">
-              <caret line="56" column="42" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+            <state vertical-scroll-proportion="3.132208">
+              <caret line="451" column="71" selection-start-line="451" selection-start-column="71" selection-end-line="451" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
-                <element signature="e#918#919#0" expanded="true" />
-                <element signature="e#962#963#0" expanded="true" />
-                <element signature="e#994#995#0" expanded="true" />
-                <element signature="e#1029#1030#0" expanded="true" />
                 <element signature="method#main#0;class#assemble#0" expanded="false" />
                 <element signature="method#process#0;class#assemble#0" expanded="false" />
                 <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
@@ -69,16 +65,15 @@
       <file leaf-file-name="AssembleUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/asm/AssembleUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="16" />
+            <state vertical-scroll-proportion="-113.13793">
+              <caret line="233" column="23" selection-start-line="233" selection-start-column="23" selection-end-line="233" selection-end-column="23" />
               <folding>
                 <element signature="method#formatComment#0;class#AssembleUtil#0" expanded="false" />
                 <element signature="method#formatInstruction#0;class#AssembleUtil#0" expanded="false" />
                 <element signature="method#fillDEADMEAT#0;class#AssembleUtil#0" expanded="false" />
-                <element signature="method#parseAddr#0;class#AssembleUtil#0" expanded="false" />
-                <element signature="method#parsePCRel#0;class#AssembleUtil#0" expanded="false" />
-                <element signature="method#parseImm#0;class#AssembleUtil#0" expanded="false" />
                 <element signature="method#parseImmHi#0;class#AssembleUtil#0" expanded="false" />
+                <element signature="method#raw2Long#0;class#AssembleUtil#0" expanded="false" />
+                <element signature="method#parseShortImm#0;class#AssembleUtil#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -106,9 +101,9 @@
         <option value="$PROJECT_DIR$/src/DebugVerbose.java" />
         <option value="$PROJECT_DIR$/src/AssembleUtil.java" />
         <option value="$PROJECT_DIR$/src/assemble.java" />
-        <option value="$PROJECT_DIR$/src/asm/AssembleUtil.java" />
         <option value="$PROJECT_DIR$/src/asm/DebugVerbose.java" />
         <option value="$PROJECT_DIR$/src/asm/assemble.java" />
+        <option value="$PROJECT_DIR$/src/asm/AssembleUtil.java" />
       </list>
     </option>
   </component>
@@ -127,10 +122,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -156,6 +150,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -208,8 +204,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -520,14 +514,15 @@
       <workItem from="1444591069022" duration="21402000" />
       <workItem from="1444803505591" duration="451000" />
       <workItem from="1444948596922" duration="10402000" />
+      <workItem from="1444959642998" duration="3563000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119727000" />
+    <option name="totallyTimeSpent" value="123290000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -538,13 +533,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1904762" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" x="227" y="829" width="896" height="499" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19234973" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" x="227" y="829" width="896" height="499" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33770493" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1673774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1673774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32683983" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -553,8 +546,10 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32889125" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32683983" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -597,7 +592,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="28" />
+      <option name="time" value="30" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -613,10 +608,50 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
-            <element signature="e#918#919#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#994#995#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
+            <element signature="method#main#0;class#assemble#0" expanded="false" />
+            <element signature="method#process#0;class#assemble#0" expanded="false" />
+            <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
+            <element signature="method#cleanExit#0;class#assemble#0" expanded="false" />
+            <element signature="method#processAssemblerDirective#0;class#assemble#0" expanded="false" />
+            <element signature="method#checkReserved#0;class#assemble#0" expanded="false" />
+            <element signature="method#parseArgs#0;class#assemble#0" expanded="false" />
+            <element signature="method#openAsm#0;class#assemble#0" expanded="false" />
+            <element signature="method#writeMif#0;class#assemble#0" expanded="false" />
+            <element signature="method#getAddressLabelDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#getConstLabelDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildDictionary#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildOpCodeDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildRegDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildPseudoInstrsHandlerDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildAllInstrsHandlerDict#0;class#assemble#0" expanded="false" />
+            <element signature="method#buildAssemblerDirDict#0;class#assemble#0" expanded="false" />
+            <element signature="class#Handler#0;class#assemble#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asm/AssembleUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="16" />
+          <folding>
+            <element signature="method#formatComment#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#formatInstruction#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#fillDEADMEAT#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#parseImmHi#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#raw2Long#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#parseShortImm#0;class#AssembleUtil#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asm/assemble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
             <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
@@ -646,10 +681,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
-            <element signature="e#918#919#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#994#995#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
             <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
@@ -679,10 +710,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
-            <element signature="e#918#919#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#994#995#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
             <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
@@ -712,10 +739,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
-            <element signature="e#918#919#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#994#995#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
             <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
@@ -745,10 +768,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
-            <element signature="e#918#919#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#994#995#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
             <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />
@@ -862,31 +881,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/asm/AssembleUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="16" />
+        <state vertical-scroll-proportion="-113.13793">
+          <caret line="233" column="23" selection-start-line="233" selection-start-column="23" selection-end-line="233" selection-end-column="23" />
           <folding>
             <element signature="method#formatComment#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#formatInstruction#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#fillDEADMEAT#0;class#AssembleUtil#0" expanded="false" />
-            <element signature="method#parseAddr#0;class#AssembleUtil#0" expanded="false" />
-            <element signature="method#parsePCRel#0;class#AssembleUtil#0" expanded="false" />
-            <element signature="method#parseImm#0;class#AssembleUtil#0" expanded="false" />
             <element signature="method#parseImmHi#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#raw2Long#0;class#AssembleUtil#0" expanded="false" />
+            <element signature="method#parseShortImm#0;class#AssembleUtil#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/asm/assemble.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20833333">
-          <caret line="56" column="42" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+        <state vertical-scroll-proportion="3.132208">
+          <caret line="451" column="71" selection-start-line="451" selection-start-column="71" selection-end-line="451" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#PrimaryOP#0;class#assemble#0" expanded="false" />
-            <element signature="e#918#919#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#994#995#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
             <element signature="method#main#0;class#assemble#0" expanded="false" />
             <element signature="method#process#0;class#assemble#0" expanded="false" />
             <element signature="method#processInstruction#0;class#assemble#0" expanded="false" />

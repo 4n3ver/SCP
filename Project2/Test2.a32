@@ -244,3 +244,6 @@ Done:
 .WORD testneg2
 	addi t0, s0, testneg1
 	addi s0, t0, 0xA
+	ble s0, t1, 0x8FFF
+	bge s0, t1, 0xFF
+	

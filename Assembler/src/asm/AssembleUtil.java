@@ -104,6 +104,7 @@ class AssembleUtil {
                 " with DEAD");
         return null;
     }
+
     /**
      * Same as <code>parseOffset</code> except this does not allow negative
      * arguments.
@@ -128,7 +129,7 @@ class AssembleUtil {
      */
     static long parseOffset(String number, int len) {
         if (len != 16 && len != 32) {
-            throw new IllegalArgumentException("unsupported length");
+            cleanExit("unsupported length");
         }
         String radixId = number.length() > 2 ? number.substring(0, 2) : "";
         long val;
@@ -164,6 +165,7 @@ class AssembleUtil {
      * @return processed immediate value in 16-bit binary
      */
     static String parsePCRel(String raw) {
+        assert raw != null;
         long delta;
         if (getAddressLabelDict().containsKey(raw)) {
             delta = getWordAddress(
@@ -171,7 +173,7 @@ class AssembleUtil {
             getDebug().printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", getCurrentByteAddr(),
                     raw, getAddressLabelDict().get(raw));
         } else {
-            delta = raw2Long(raw);
+            delta = raw2Long(raw, 16);
         }
         if (delta < Short.MIN_VALUE && delta > Short.MAX_VALUE) {
             throw new IllegalArgumentException(
@@ -195,7 +197,7 @@ class AssembleUtil {
      * @return processed immediate value in 32-bit binary
      */
     static String parseImm(String raw, int bitMask) {
-        long val = raw2Long(raw);
+        long val = raw2Long(raw, 32);
         if (val < Integer.MIN_VALUE && val > Integer.MAX_VALUE) {
             throw new IllegalArgumentException("Out of range: " + val);
         }
@@ -229,20 +231,22 @@ class AssembleUtil {
         return parseImm(raw, 0xFFFF0000).substring(0, 16);
     }
 
-    // TOO MANY DRAGON AHEAD - NEVER EVER CALL DIRECTLY
+    // TOO MANY DRAGONs AHEAD - NEVER EVER CALL DIRECTLY
 
     /**
      * Process IMMEDIATE value which can be label or raw value into a
      * valid value.
      *
-     * @param raw raw immediate value read
+     * @param raw raw immediate value read     *
+     * @param len    expected binary representation length of the result
      * @return processed immediate value in long integer
      */
-    private static long raw2Long(String raw) {
+    private static long raw2Long(String raw, int len) {
         long val;
         try {
-            val = parseOffset(raw, 16);
+            val = parseOffset(raw, len);
         } catch (Exception e) {
+            getDebug().printStackTrace(e);
             if (getAddressLabelDict().containsKey(raw)) {
                 val = getWordAddress(getAddressLabelDict().get(raw));
                 getDebug().printf("PC: %d LABEL: %s LABEL_ADDR: %d\n", getCurrentByteAddr(),
@@ -270,7 +274,7 @@ class AssembleUtil {
      * @return processed immediate value in 16-bit binary
      */
     private static String parseShortImm(String raw, int bitMask) {
-        long val = raw2Long(raw);
+        long val = raw2Long(raw, 16);
         if (val < Short.MIN_VALUE && val > Short.MAX_VALUE) {
             System.err.printf(
                     "[WARNING] some information in %s might be loss\n", raw);

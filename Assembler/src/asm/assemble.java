@@ -429,6 +429,7 @@ public class assemble {
         dict.put("t0", "0100");
         dict.put("t1", "0101");
         dict.put("s0", "0110");
+        dict.put("r6", "0110");
         dict.put("s1", "0111");
         dict.put("s2", "1000");
         dict.put("r9", "1001");
@@ -498,25 +499,23 @@ public class assemble {
                     args.group(3);
             debug.println(
                     "converting (" + args.group(0) + ") to (" + actual + ")");
-            args.reset(actual);
-            args.matches();
-            debug.println(args.group(0));
-            instrsHandlerDict.get("lte").processArgs(args);
+            Matcher first = args.pattern().matcher(actual);
+            first.matches();
+            instrsHandlerDict.get("lte").processArgs(first);
             byte_addr += 4;
             actual = "bnez r6, " + args.group(4);
             args.reset(actual);
             args.matches();
             instrsHandlerDict.get("bnez").processArgs(args);
         });
-        dict.put("ble", args -> {
+        dict.put("bge", args -> {
             String actual = "gte r6, " + args.group(2) + ", " +
                     args.group(3);
             debug.println(
                     "converting (" + args.group(0) + ") to (" + actual + ")");
-            args.reset(actual);
-            args.matches();
-            debug.println(args.group(0));
-            instrsHandlerDict.get("lte").processArgs(args);
+            Matcher first = args.pattern().matcher(actual);
+            first.matches();
+            instrsHandlerDict.get("lte").processArgs(first);
             byte_addr += 4;
             actual = "bnez r6, " + args.group(4);
             args.reset(actual);
