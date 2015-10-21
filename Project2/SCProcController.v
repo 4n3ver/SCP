@@ -1,8 +1,8 @@
 // Yoel Ivan (yivan3@gatech.edu)
 
 module SCProcController(memWrEn, regFileWrEn, aluAltOp, pcSel, aluSrc2Sel, 
-						regFileRd0Index, regFileRd1Index, regFileWrIndex,
-						aluFunc, imm, aluOut, instruction);					
+						regFileWrSel, regFileRd0Index, regFileRd1Index, 
+						regFileWrIndex, aluFunc, imm, aluOut, instruction);					
 	parameter 	aluSrc2Sel_RS2 = 1'b0,
 				aluSrc2Sel_IMM = 1'b1;
 	// use this value for the pcSel Mux				
@@ -33,7 +33,7 @@ module SCProcController(memWrEn, regFileWrEn, aluAltOp, pcSel, aluSrc2Sel,
 	reg [1:0] pcSel, regFileWrSel;
 	reg [3:0] regFileRd0Index, regFileRd1Index;
 
-	@always@(*) begin
+	always@(*) begin
 		case (opcode[1:0])
 			2'b00: begin
 				case (opcode[3:2]) 
@@ -43,7 +43,7 @@ module SCProcController(memWrEn, regFileWrEn, aluAltOp, pcSel, aluSrc2Sel,
 					end
 					2'b10: begin	// ALU-I
 						regFileRd1Index = 4'bxxxx;
-						aluSrc2Sel = aluSrc2Sel_IMM
+						aluSrc2Sel = aluSrc2Sel_IMM;
 					end
 					default: begin	// INVALID
 						regFileRd1Index = 4'bxxxx;
@@ -142,8 +142,8 @@ module SCProcController(memWrEn, regFileWrEn, aluAltOp, pcSel, aluSrc2Sel,
 						pcSel = 2'bxx;
 						memWrEn = 1'bx;
 					end
-					regFileRd1Index = 4'bxxxx;
 				endcase
+				regFileRd1Index = 4'bxxxx;
 			end
 			default: begin
 				regFileRd0Index = 4'bxxxx;		
