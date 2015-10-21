@@ -525,6 +525,8 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name ALLOW_POWER_UP_DONT_CARE OFF
 set_global_assignment -name MISC_FILE Lectures.dpf
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VERILOG_FILE SCProcController.v
 set_global_assignment -name VERILOG_FILE InstMemory.v
 set_global_assignment -name VERILOG_FILE Register.v
 set_global_assignment -name VERILOG_FILE Project2.v
@@ -534,4 +536,3 @@ set_global_assignment -name VERILOG_FILE SevenSeg.v
 set_global_assignment -name SDC_FILE Timing.sdc
 set_global_assignment -name VERILOG_FILE SignExtension.v
 set_global_assignment -name QIP_FILE PLL.qip
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
