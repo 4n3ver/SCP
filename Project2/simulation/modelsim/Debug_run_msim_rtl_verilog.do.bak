@@ -1,0 +1,23 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/SCProcController.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/RF.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/pcALU.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/mux4.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/mux2.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/DataMemory.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/branchALU.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/ALU.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/InstMemory.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/Register.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/Project2.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/SevenSeg.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/SignExtension.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/PLL.v}
+vlog -vlog01compat -work work +incdir+E:/Dropbox/Documents/University/CS\ 3220/Assignment/Real\ Project\ 2\ -\ Single\ Cycle\ Processor/Project2 {E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/conditionalshifter.v}
+

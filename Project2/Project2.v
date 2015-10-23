@@ -100,6 +100,7 @@ module Project2(SW,KEY,LEDR,LEDG,HEX0,HEX1,HEX2,HEX3,CLOCK_50);
 	reg [3:0] keyIn;
 	reg [9:0] switches;
 	reg [15:0] bounceCount;
+	//TODO: change this to something else
 	always @(posedge clk) begin
 		bounceCount <= 16'd0;
 		keyIn <= /*KEY*/ {KEY[3:1], 1'b1}; /*<>*/

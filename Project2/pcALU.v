@@ -4,6 +4,6 @@ module pcALU(pcIn, pcOut);
 	reg [31:0] pcOut;
 	
 	always @(*) begin
-		pcOut <= pcIn + 31'd4;
+		pcOut <= pcIn + 32'd4;
 	end
 endmodule

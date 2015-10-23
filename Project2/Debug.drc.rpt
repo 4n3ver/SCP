@@ -1,0 +1,216 @@
+Design Assistant report for Debug
+Fri Oct 23 16:48:23 2015
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Design Assistant Summary
+  3. Design Assistant Settings
+  4. Information only Violations
+  5. Design Assistant Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------+
+; Design Assistant Summary                                                ;
++-----------------------------------+-------------------------------------+
+; Design Assistant Status           ; Analyzed - Fri Oct 23 16:48:23 2015 ;
+; Revision Name                     ; Debug                               ;
+; Top-level Entity Name             ; RF                                  ;
+; Family                            ; Cyclone II                          ;
+; Total Critical Violations         ; 0                                   ;
+; Total High Violations             ; 0                                   ;
+; Total Medium Violations           ; 0                                   ;
+; Total Information only Violations ; 50                                  ;
+; - Rule T102                       ; 50                                  ;
++-----------------------------------+-------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Design Assistant Settings                                                                                                                                                                                                                                                                                ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+----+
+; Option                                                                                                                                                                                                                                                                               ; Setting      ; To ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+----+
+; Design Assistant mode                                                                                                                                                                                                                                                                ; Post-Fitting ;    ;
+; Threshold value for clock net not mapped to clock spines rule                                                                                                                                                                                                                        ; 25           ;    ;
+; Minimum number of clock port feed by gated clocks                                                                                                                                                                                                                                    ; 30           ;    ;
+; Minimum number of node fan-out                                                                                                                                                                                                                                                       ; 30           ;    ;
+; Maximum number of nodes to report                                                                                                                                                                                                                                                    ; 50           ;    ;
+; Rule C101: Gated clock should be implemented according to the Altera standard scheme                                                                                                                                                                                                 ; On           ;    ;
+; Rule C102: Logic cell should not be used to generate an inverted clock signal                                                                                                                                                                                                        ; On           ;    ;
+; Rule C103: Gated clock does not feed at least a pre-defined number of clock ports to effectively save power                                                                                                                                                                          ; On           ;    ;
+; Rule C104: Clock signal source should drive only clock input ports                                                                                                                                                                                                                   ; On           ;    ;
+; Rule C105: Clock signal should be a global signal (Rule applies during post-fitting analysis. This rule applies during both post-fitting analysis and post-synthesis analysis if the design targets a MAX 3000 or MAX 7000 device. For more information, see the Help for the rule.) ; On           ;    ;
+; Rule C106: Clock signal source should not drive registers triggered by different clock edges                                                                                                                                                                                         ; On           ;    ;
+; Rule R101: Combinational logic used as a reset signal should be synchronized                                                                                                                                                                                                         ; On           ;    ;
+; Rule R102: External reset signals should be synchronized using two cascaded registers                                                                                                                                                                                                ; On           ;    ;
+; Rule R103: External reset signal should be correctly synchronized                                                                                                                                                                                                                    ; On           ;    ;
+; Rule R104: The reset signal that is generated in one clock domain and used in another clock domain should be correctly synchronized                                                                                                                                                  ; On           ;    ;
+; Rule R105: The reset signal that is generated in one clock domain and used in another clock domain should be synchronized                                                                                                                                                            ; On           ;    ;
+; Rule T101: Nodes with more than the specified number of fan-outs                                                                                                                                                                                                                     ; On           ;    ;
+; Rule T102: Top nodes with the highest number of fan-outs                                                                                                                                                                                                                             ; On           ;    ;
+; Rule A101: Design should not contain combinational loops                                                                                                                                                                                                                             ; On           ;    ;
+; Rule A102: Register output should not drive its own control signal directly or through combinational logic                                                                                                                                                                           ; On           ;    ;
+; Rule A103: Design should not contain delay chains                                                                                                                                                                                                                                    ; On           ;    ;
+; Rule A104: Design should not contain ripple clock structures                                                                                                                                                                                                                         ; On           ;    ;
+; Rule A105: Pulses should not be implemented asynchronously                                                                                                                                                                                                                           ; On           ;    ;
+; Rule A106: Multiple pulses should not be generated in design                                                                                                                                                                                                                         ; On           ;    ;
+; Rule A107: Design should not contain SR latches                                                                                                                                                                                                                                      ; On           ;    ;
+; Rule A108: Design should not contain latches                                                                                                                                                                                                                                         ; On           ;    ;
+; Rule S101: Output enable and input of the same tri-state node should not be driven by same signal source                                                                                                                                                                             ; On           ;    ;
+; Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source                                                                                                                                                                ; On           ;    ;
+; Rule S103: More than one asynchronous port of a register should not be driven by the same signal source                                                                                                                                                                              ; On           ;    ;
+; Rule S104: Clock port and any other port of a register should not be driven by the same signal source                                                                                                                                                                                ; On           ;    ;
+; Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains                                                                                                                                                                                        ; On           ;    ;
+; Rule D102: Multiple data bits that are transferred across asynchronous clock domains are synchronized, but not all bits may be aligned in the receiving clock domain                                                                                                                 ; On           ;    ;
+; Rule D103: Data bits are not correctly synchronized when transferred between asynchronous clock domains                                                                                                                                                                              ; On           ;    ;
+; Rule M101: Data bits are not synchronized when transferred to the state machine of asynchronous clock domains                                                                                                                                                                        ; Off          ;    ;
+; Rule M102: No reset signal defined to initialize the state machine                                                                                                                                                                                                                   ; Off          ;    ;
+; Rule M103: State machine should not contain an unreachable state                                                                                                                                                                                                                     ; Off          ;    ;
+; Rule M104: State machine should not contain a deadlock state                                                                                                                                                                                                                         ; Off          ;    ;
+; Rule M105: State machine should not contain a dead transition                                                                                                                                                                                                                        ; Off          ;    ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+----+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Information only Violations                                                                                                                ;
++----------------------------------------------------------+-----------------------------------------------------------------------+---------+
+; Rule name                                                ; Name                                                                  ; Fan-Out ;
++----------------------------------------------------------+-----------------------------------------------------------------------+---------+
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[24]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[2]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[28]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[19]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[3]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[27]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[1]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[5]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[30]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[25]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[26]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; clk~clkctrl                                                           ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[29]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[4]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[23]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[22]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[21]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[20]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[18]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrIndex[3]                                                     ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[17]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[16]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrIndex[2]                                                     ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[15]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrIndex[1]                                                     ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[14]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[13]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrIndex[0]                                                     ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[12]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[11]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[10]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[0]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[9]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrEn                                                           ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[8]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[7]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[6]                                                             ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[31]                                                            ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a24 ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a25 ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a26 ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a27 ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a28 ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a29 ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a30 ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a31 ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_1|altsyncram_ung1:auto_generated|ram_block1a5  ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_1|altsyncram_ung1:auto_generated|ram_block1a6  ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_1|altsyncram_ung1:auto_generated|ram_block1a7  ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_1|altsyncram_ung1:auto_generated|ram_block1a9  ; 1       ;
++----------------------------------------------------------+-----------------------------------------------------------------------+---------+
+
+
++---------------------------+
+; Design Assistant Messages ;
++---------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Design Assistant
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Fri Oct 23 16:48:22 2015
+Info: Command: quartus_drc --read_settings_files=off --write_settings_files=off Project2 -c Debug
+Info (332104): Reading SDC File: 'Timing.sdc'
+Warning (332174): Ignored filter at Timing.sdc(1): CLOCK_50 could not be matched with a port
+Warning (332049): Ignored create_clock at Timing.sdc(1): Argument <targets> is an empty collection
+    Info (332050): create_clock -name "Clock10" -period 100.000ns [get_ports {CLOCK_50}]
+Warning (332174): Ignored filter at Timing.sdc(5): Clock10 could not be matched with a clock
+Warning (332049): Ignored set_input_delay at Timing.sdc(5): Argument -clock is not an object ID
+    Info (332050): set_input_delay -clock "Clock10" -max -100ns [all_inputs] 
+Warning (332049): Ignored set_input_delay at Timing.sdc(6): Argument -clock is not an object ID
+    Info (332050): set_input_delay -clock "Clock10" -min 0ns [all_inputs] 
+Warning (332049): Ignored set_output_delay at Timing.sdc(8): Argument -clock is not an object ID
+    Info (332050): set_output_delay -clock "Clock10" -max -100ns [all_outputs] 
+Warning (332049): Ignored set_output_delay at Timing.sdc(9): Argument -clock is not an object ID
+    Info (332050): set_output_delay -clock "Clock10" -min 0ns [all_outputs] 
+Info (332144): No user constrained base clocks found in the design
+Info (308044): (Information) Rule T102: Top nodes with the highest number of fan-outs. (Value defined:50). Found 50 node(s) with highest fan-out.
+    Info (308011): Node  "dataIn[24]"
+    Info (308011): Node  "dataIn[2]"
+    Info (308011): Node  "dataIn[28]"
+    Info (308011): Node  "dataIn[19]"
+    Info (308011): Node  "dataIn[3]"
+    Info (308011): Node  "dataIn[27]"
+    Info (308011): Node  "dataIn[1]"
+    Info (308011): Node  "dataIn[5]"
+    Info (308011): Node  "dataIn[30]"
+    Info (308011): Node  "dataIn[25]"
+    Info (308011): Node  "dataIn[26]"
+    Info (308011): Node  "clk~clkctrl"
+    Info (308011): Node  "dataIn[29]"
+    Info (308011): Node  "dataIn[4]"
+    Info (308011): Node  "dataIn[23]"
+    Info (308011): Node  "dataIn[22]"
+    Info (308011): Node  "dataIn[21]"
+    Info (308011): Node  "dataIn[20]"
+    Info (308011): Node  "dataIn[18]"
+    Info (308011): Node  "regFileWrIndex[3]"
+    Info (308011): Node  "dataIn[17]"
+    Info (308011): Node  "dataIn[16]"
+    Info (308011): Node  "regFileWrIndex[2]"
+    Info (308011): Node  "dataIn[15]"
+    Info (308011): Node  "regFileWrIndex[1]"
+    Info (308011): Node  "dataIn[14]"
+    Info (308011): Node  "dataIn[13]"
+    Info (308011): Node  "regFileWrIndex[0]"
+    Info (308011): Node  "dataIn[12]"
+    Info (308011): Node  "dataIn[11]"
+    Info (308002): Truncated list of Design Assistant messages to 30 messages. Go to sections under Design Assistant section of Compilation Report for complete lists of Design Assistant messages generated.
+Info (308007): Design Assistant information: finished post-fitting analysis of current design -- generated 50 information messages and 0 warning messages
+Info: Quartus II 64-Bit Design Assistant was successful. 0 errors, 7 warnings
+    Info: Peak virtual memory: 409 megabytes
+    Info: Processing ended: Fri Oct 23 16:48:23 2015
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+
