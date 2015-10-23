@@ -74,9 +74,10 @@ module Project2(SW,KEY,LEDR,LEDG,HEX0,HEX1,HEX2,HEX3,CLOCK_50);
 	wire [31:0] rfDataIn, rfDataOut1, rfDataOut2;
 	RF regFile(clk, rfWrEn, rfRd0Index, rfRd1Index, rfWrIndex, rfDataIn, rfDataOut1, rfDataOut2);
 	// Create ALU unit
-	wire [31:0] immSe, aluSrc2, aluDataOut;
+	wire [31:0] immSe, aluSrc2, aluDataOut, immSeShift;
 	SignExtension #(.IN_BIT_WIDTH(16), .OUT_BIT_WIDTH(32)) se(imm, immSe);
-	mux2 aluMux(aluSrc2Sel, rfDataOut2, immSe, aluSrc2);
+	ConditionalShifter shift(immSeShift, instWord[3:0], immSe);
+	mux2 aluMux(aluSrc2Sel, rfDataOut2, immSeShift, aluSrc2);
 	ALU alu1(aluAltOp, rfDataOut1, aluFunc, aluSrc2, aluDataOut, aluOut);
 	branchALU alu2(pcOut4, immSe, pc4Imm);
 	 
