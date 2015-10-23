@@ -1,6 +1,6 @@
 module Register(clk, reset, wrtEn, dataIn, dataOut);
 	parameter BIT_WIDTH = 32;
-	parameter RESET_VALUE = 0;
+	parameter RESET_VALUE = 32'h40;
 	
 	input clk, reset, wrtEn;
 	input[BIT_WIDTH - 1: 0] dataIn;

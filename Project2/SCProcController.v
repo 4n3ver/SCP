@@ -1,5 +1,3 @@
-// Yoel Ivan (yivan3@gatech.edu)
-
 module SCProcController(memWrEn, regFileWrEn, aluAltOp, pcSel, aluSrc2Sel, 
 						regFileWrSel, regFileRd0Index, regFileRd1Index, 
 						regFileWrIndex, aluFunc, imm, aluOut, instruction);					
@@ -114,7 +112,7 @@ module SCProcController(memWrEn, regFileWrEn, aluAltOp, pcSel, aluSrc2Sel,
 						regFileWrSel = regFileWrSel_ALU;
 					end
 				endcase
-				if (aluOut && opcode[3:2] == 2'b01) begin
+				if (aluOut == 1'b1) begin
 					pcSel = pcSel_4IMM;
 				end else begin
 					pcSel = pcSel_4;

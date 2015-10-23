@@ -2,4 +2,12 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow Model Minimum Pulse Width 'Clock10'
+Slack : 97.369
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'Clock10'
+Slack : 97.620
+TNS   : 0.000
+
 ------------------------------------------------------------
