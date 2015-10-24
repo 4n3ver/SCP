@@ -1,5 +1,5 @@
 Flow report for Debug
-Fri Oct 23 16:48:25 2015
+Fri Oct 23 22:40:05 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,7 +40,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Fri Oct 23 16:48:25 2015           ;
+; Flow Status                        ; Successful - Fri Oct 23 22:40:05 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; Debug                                           ;
 ; Top-level Entity Name              ; RF                                              ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/23/2015 16:48:05 ;
+; Start date & time ; 10/23/2015 22:39:48 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; Debug               ;
 +-------------------+---------------------+
@@ -80,7 +80,7 @@ applicable agreement for further details.
 ; ALLOW_ANY_ROM_SIZE_FOR_RECOGNITION      ; On                             ; Off           ; --          ; --             ;
 ; ALLOW_POWER_UP_DONT_CARE                ; Off                            ; On            ; --          ; --             ;
 ; AUTO_RAM_TO_LCELL_CONVERSION            ; On                             ; Off           ; --          ; --             ;
-; COMPILER_SIGNATURE_ID                   ; 14098532356308.144563328511404 ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                   ; 14098532356308.144565438806096 ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME                ; NA                             ; --            ; --          ; RFTestBench    ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH    ; RFTestBench                    ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT                  ; Verilog Hdl                    ; --            ; --          ; eda_simulation ;
@@ -123,13 +123,13 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:02     ; 1.0                     ; 494 MB              ; 00:00:02                           ;
-; Fitter                    ; 00:00:07     ; 1.0                     ; 728 MB              ; 00:00:07                           ;
-; Assembler                 ; 00:00:03     ; 1.0                     ; 431 MB              ; 00:00:03                           ;
-; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 422 MB              ; 00:00:01                           ;
-; Design Assistant          ; 00:00:01     ; 1.0                     ; 409 MB              ; 00:00:01                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 395 MB              ; 00:00:01                           ;
-; Total                     ; 00:00:15     ; --                      ; --                  ; 00:00:15                           ;
+; Analysis & Synthesis      ; 00:00:01     ; 1.0                     ; 494 MB              ; 00:00:01                           ;
+; Fitter                    ; 00:00:04     ; 1.0                     ; 728 MB              ; 00:00:04                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 431 MB              ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 422 MB              ; 00:00:01                           ;
+; Design Assistant          ; 00:00:00     ; 1.0                     ; 409 MB              ; 00:00:00                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 395 MB              ; 00:00:00                           ;
+; Total                     ; 00:00:10     ; --                      ; --                  ; 00:00:07                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

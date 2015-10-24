@@ -3,10 +3,10 @@
 `timescale 1ns / 1ps
 module RFTestBench;
 	reg CLK, WrEn;
-	RF(CLK, WrEn, RS1, RS2, RD, in, out1, out2);
 	reg [3:0] RS1, RS2, RD;
 	wire [31:0] out1, out2;
 	reg [31:0] in;
+	RF regfile(CLK, WrEn, RS1, RS2, RD, in, out1, out2);
 	
 	reg [4:0] i, j;
 	

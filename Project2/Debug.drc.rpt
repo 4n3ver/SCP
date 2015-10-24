@@ -1,5 +1,5 @@
 Design Assistant report for Debug
-Fri Oct 23 16:48:23 2015
+Fri Oct 23 22:40:02 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------+
 ; Design Assistant Summary                                                ;
 +-----------------------------------+-------------------------------------+
-; Design Assistant Status           ; Analyzed - Fri Oct 23 16:48:23 2015 ;
+; Design Assistant Status           ; Analyzed - Fri Oct 23 22:40:02 2015 ;
 ; Revision Name                     ; Debug                               ;
 ; Top-level Entity Name             ; RF                                  ;
 ; Family                            ; Cyclone II                          ;
@@ -158,7 +158,7 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Design Assistant
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Oct 23 16:48:22 2015
+    Info: Processing started: Fri Oct 23 22:40:02 2015
 Info: Command: quartus_drc --read_settings_files=off --write_settings_files=off Project2 -c Debug
 Info (332104): Reading SDC File: 'Timing.sdc'
 Warning (332174): Ignored filter at Timing.sdc(1): CLOCK_50 could not be matched with a port
@@ -209,8 +209,8 @@ Info (308044): (Information) Rule T102: Top nodes with the highest number of fan
 Info (308007): Design Assistant information: finished post-fitting analysis of current design -- generated 50 information messages and 0 warning messages
 Info: Quartus II 64-Bit Design Assistant was successful. 0 errors, 7 warnings
     Info: Peak virtual memory: 409 megabytes
-    Info: Processing ended: Fri Oct 23 16:48:23 2015
+    Info: Processing ended: Fri Oct 23 22:40:03 2015
     Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+    Info: Total CPU time (on all processors): 00:00:00
 
 
