@@ -1,0 +1,19 @@
+; Addresses for I/O
+.NAME IOBASE= 0xF0000000
+.NAME	OFSHEX= 0x00000000
+.NAME	OFSLEDR=0x00000004
+.NAME	OFSLEDG=0x00000008
+.NAME	OFSKEY =0x00000010
+.NAME	OFSSW  =0x00000014
+.ORIG 0x40
+	mvhi	gp,IOBASE
+	xor		fp,fp,fp
+	and t1, fp, fp
+WaitPress1:
+	lw		t1,OFSSW(gp)
+	sw		t1,OFSHEX(gp)
+	beq		t1,fp,WaitPress1
+WaitRelease1:
+	lw		t1,OFSSW(gp)
+	sw		t1,OFSHEX(gp)
+	bne		t1,fp,WaitRelease1	

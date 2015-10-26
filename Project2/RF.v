@@ -7,16 +7,15 @@ module RF(clk, regFileWrEn, regFileRd0Index, regFileRd1Index, regFileWrIndex, da
 	output [31:0] dataOut0, dataOut1;
 	reg [31:0] regData [0:15];
 	
-	reg [31:0] dataOut0, dataOut1;
 	always @(posedge clk)
 	begin
 		if (regFileWrEn)
 		begin
 			regData[regFileWrIndex] <= dataIn;
 		end
-		dataOut0 <= regData[regFileRd0Index];
-		dataOut1 <= regData[regFileRd1Index];
 	end
+	assign dataOut0 = regData[regFileRd0Index];
+	assign dataOut1 = regData[regFileRd1Index];
 	
 	
 //	wire [31:0] out[0:15];

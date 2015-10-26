@@ -607,7 +607,7 @@ public class assemble {
             instrsHandlerDict.get("jal").processArgs(args);
         });
         dict.put("ble", args -> {
-            String actual = "lte r6, " + args.group(2) + ", " +
+            String actual = "lte r9, " + args.group(2) + ", " +
                     args.group(3);
             debug.println(
                     "converting (" + args.group(0) + ") to (" + actual + ")");
@@ -615,13 +615,13 @@ public class assemble {
             first.matches();
             instrsHandlerDict.get("lte").processArgs(first);
             byte_addr += 4;
-            actual = "bnez r6, " + args.group(4);
+            actual = "bnez r9, " + args.group(4);
             args.reset(actual);
             args.matches();
             instrsHandlerDict.get("bnez").processArgs(args);
         });
         dict.put("bge", args -> {
-            String actual = "gte r6, " + args.group(2) + ", " +
+            String actual = "gte r9, " + args.group(2) + ", " +
                     args.group(3);
             debug.println(
                     "converting (" + args.group(0) + ") to (" + actual + ")");
@@ -629,7 +629,7 @@ public class assemble {
             first.matches();
             instrsHandlerDict.get("lte").processArgs(first);
             byte_addr += 4;
-            actual = "bnez r6, " + args.group(4);
+            actual = "bnez r9, " + args.group(4);
             args.reset(actual);
             args.matches();
             instrsHandlerDict.get("bnez").processArgs(args);

@@ -2,46 +2,338 @@ m255
 K3
 13
 cModel Technology
-Z0 dE:\Dropbox\Documents\University\CS 3220\Assignment\Real Project 2 - Single Cycle Processor\Project2\simulation\modelsim
-vRF
-Ig;i^NHACgb8f]K`Mb;CLE3
-VzYOU_QK6SZ0d_F8giYT?b0
-Z1 dE:\Dropbox\Documents\University\CS 3220\Assignment\Real Project 2 - Single Cycle Processor\Project2\simulation\modelsim
-w1445555370
-8E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/RF.v
-FE:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/RF.v
+Z0 dE:\Project2-1.1\Project2-1.0\simulation\modelsim
+vALU
+InP4SCYiH0MS;elTinl9ka2
+V:WMPdJ@LdOfnGHfJgC<7]3
+Z1 dE:\Project2-1.1\Project2-1.0\simulation\modelsim
+w1445798981
+8E:/Project2-1.1/Project2-1.0/ALU.v
+FE:/Project2-1.1/Project2-1.0/ALU.v
 L0 1
 Z2 OV;L;10.1d;51
 r1
 31
 Z3 o-vlog01compat -work work -O0
-n@r@f
+Z4 !s92 -vlog01compat -work work +incdir+E:/Project2-1.1/Project2-1.0 -O0
+n@a@l@u
 !i10b 1
-!s100 Vk1YfD^cII[j48ZV;^N@z2
+!s100 ;S11O6JzhU^;`B=2Q02CN3
 !s85 0
-!s108 1445654438.167000
-!s107 E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/RF.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2|E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/RF.v|
+!s108 1445806528.299000
+!s107 E:/Project2-1.1/Project2-1.0/ALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/ALU.v|
 !s101 -O0
-Z4 !s92 -vlog01compat -work work {+incdir+E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2} -O0
-vRFTestBench
-!i10b 1
-!s100 2FPCK[R_^d?Q2;g_kV3Fe0
-IkL95J<`7=2m@7]^3SnHmE3
-Vk:4Nn_P2LMhl;^:zkDgcF0
+vbranchALU
+IWgR?kDgeF<o3MhPW`SYNg3
+VTcgS=NE3]@NHYla4DeO]n1
 R1
-w1445654384
-8E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/RFTestBench.v
-FE:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/RFTestBench.v
-L0 4
+Z5 w1445624410
+8E:/Project2-1.1/Project2-1.0/branchALU.v
+FE:/Project2-1.1/Project2-1.0/branchALU.v
+L0 1
+R2
+r1
+31
+R3
+R4
+nbranch@a@l@u
+!i10b 1
+!s100 Z0IPem`E??nmAan_F6ZS32
+!s85 0
+!s108 1445806528.127000
+!s107 E:/Project2-1.1/Project2-1.0/branchALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/branchALU.v|
+!s101 -O0
+vConditionalShifter
+I2YF]9HE3TSHD5EHhKiLP83
+Ve^H`zgiOBE^Y4EGG^hd8W1
+R1
+w1445728866
+8E:/Project2-1.1/Project2-1.0/ConditionShifter.v
+FE:/Project2-1.1/Project2-1.0/ConditionShifter.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@conditional@shifter
+!i10b 1
+!s100 0VClACgIG?9W:dZ6cSOSD0
+!s85 0
+!s108 1445806529.627000
+!s107 E:/Project2-1.1/Project2-1.0/ConditionShifter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/ConditionShifter.v|
+!s101 -O0
+vDataMemory
+IiJ7Aa[J^aCV_^DCne4BTL1
+VA5Y7QmIWABh;VG=0FnQPB0
+R1
+w1445733929
+8E:/Project2-1.1/Project2-1.0/DataMemory.v
+FE:/Project2-1.1/Project2-1.0/DataMemory.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@data@memory
+!i10b 1
+!s100 X9I[aDXWkDA15f7XNNmGb2
+!s85 0
+!s108 1445806527.940000
+!s107 E:/Project2-1.1/Project2-1.0/DataMemory.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/DataMemory.v|
+!s101 -O0
+vInstMemory
+I8f@z4Q833QDaoTk9AI6e50
+VUJYb>IZO9F_mPNHYd`^832
+R1
+R5
+8E:/Project2-1.1/Project2-1.0/InstMemory.v
+FE:/Project2-1.1/Project2-1.0/InstMemory.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@inst@memory
+!i10b 1
+!s100 DGVG;SZ]J5b3CDP;m^l_31
+!s85 0
+!s108 1445806528.502000
+!s107 E:/Project2-1.1/Project2-1.0/InstMemory.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/InstMemory.v|
+!s101 -O0
+vmux2
+IVVAjheUGDfJn20QCT=jC73
+V@Nlm8kRHj=gMY[KG37IgT2
+R1
+w1445797576
+8E:/Project2-1.1/Project2-1.0/mux2.v
+FE:/Project2-1.1/Project2-1.0/mux2.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 hk8WF1>T?g9c^6;JSYZlL0
+!s85 0
+!s108 1445806527.757000
+!s107 E:/Project2-1.1/Project2-1.0/mux2.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/mux2.v|
+!s101 -O0
+vmux4
+IGgELe^;ed5hOZHg7Go:T@3
+VPQUNbb883B4<@N18VH]_J0
+R1
+w1445806011
+8E:/Project2-1.1/Project2-1.0/mux4.v
+FE:/Project2-1.1/Project2-1.0/mux4.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 <RRCH9N90m8Lg9a4jQC@l0
+!s85 0
+!s108 1445806527.570000
+!s107 E:/Project2-1.1/Project2-1.0/mux4.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/mux4.v|
+!s101 -O0
+vmuxTestBench
+!i10b 1
+!s100 GdOMFABB>4O>BjT[d8ZYe3
+InlaN7?db8V?<N0eR`Sl;h0
+V_zAVZ2A`S]n8_3kUPa5^?1
+R1
+w1445806515
+8E:/Project2-1.1/Project2-1.0/muxTestBench.v
+FE:/Project2-1.1/Project2-1.0/muxTestBench.v
+L0 2
 R2
 r1
 !s85 0
 31
-!s108 1445654438.410000
-!s107 E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/RFTestBench.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2|E:/Dropbox/Documents/University/CS 3220/Assignment/Real Project 2 - Single Cycle Processor/Project2/RFTestBench.v|
+!s108 1445806529.799000
+!s107 E:/Project2-1.1/Project2-1.0/muxTestBench.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/muxTestBench.v|
 !s101 -O0
 R3
 R4
-n@r@f@test@bench
+nmux@test@bench
+vpcALU
+I]>LDObhDMLF<jWo@UD5@[2
+V7eY3OWW`gUMC>IA7zZE^L1
+R1
+R5
+8E:/Project2-1.1/Project2-1.0/pcALU.v
+FE:/Project2-1.1/Project2-1.0/pcALU.v
+L0 1
+R2
+r1
+31
+R3
+R4
+npc@a@l@u
+!i10b 1
+!s100 FW8H0VHhcKnQ?0CChe1FO3
+!s85 0
+!s108 1445806527.398000
+!s107 E:/Project2-1.1/Project2-1.0/pcALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/pcALU.v|
+!s101 -O0
+vPLL
+IAFIXZ`YnhL5S1mc?FFNTi1
+VcRJBAi;iBH4]@Zh9O[[o60
+R1
+R5
+8E:/Project2-1.1/Project2-1.0/PLL.v
+FE:/Project2-1.1/Project2-1.0/PLL.v
+L0 39
+R2
+r1
+31
+R3
+R4
+n@p@l@l
+!i10b 1
+!s100 UOSDIISUJYH>n]b?L[NfE2
+!s85 0
+!s108 1445806529.424000
+!s107 E:/Project2-1.1/Project2-1.0/PLL.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/PLL.v|
+!s101 -O0
+vProject2
+Igk1^BCiZVea^[^=K=H`8B3
+VBgk@jzUY_g3NSZjOOoJ]U3
+R1
+w1445806424
+8E:/Project2-1.1/Project2-1.0/Project2.v
+FE:/Project2-1.1/Project2-1.0/Project2.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@project2
+!i10b 1
+!s100 lCEAWLGCQX:5UfJ]UMDa13
+!s85 0
+!s108 1445806528.830000
+!s107 E:/Project2-1.1/Project2-1.0/Project2.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/Project2.v|
+!s101 -O0
+vRegister
+IP77mnHfkiSXkeAD`0dN<I2
+Vz5>FDVHi^R2c91TQEC>4?3
+R1
+R5
+8E:/Project2-1.1/Project2-1.0/Register.v
+FE:/Project2-1.1/Project2-1.0/Register.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@register
+!i10b 1
+!s100 jY=I`mzQi@h[dael]5Ao@1
+!s85 0
+!s108 1445806528.659000
+!s107 E:/Project2-1.1/Project2-1.0/Register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/Register.v|
+!s101 -O0
+vRF
+I5ezM7f04jb8ZiiP]^^@Ml1
+VzYOU_QK6SZ0d_F8giYT?b0
+R1
+w1445799835
+8E:/Project2-1.1/Project2-1.0/RF.v
+FE:/Project2-1.1/Project2-1.0/RF.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@r@f
+!i10b 1
+!s100 ^Y?5T8gaa2[bg9Nk`mcz:0
+!s85 0
+!s108 1445806527.226000
+!s107 E:/Project2-1.1/Project2-1.0/RF.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/RF.v|
+!s101 -O0
+vSCProcController
+I:oUL1C?cd;kXfI<HH[;Bm0
+VzHcRF3oXneNSU6hdij:9B1
+R1
+w1445805737
+8E:/Project2-1.1/Project2-1.0/SCProcController.v
+FE:/Project2-1.1/Project2-1.0/SCProcController.v
+L0 1
+R2
+r1
+31
+R3
+n@s@c@proc@controller
+R4
+!i10b 1
+!s100 T;Rma=?Y2CE`72oo3@Y]83
+!s85 0
+!s108 1445806527.038000
+!s107 E:/Project2-1.1/Project2-1.0/SCProcController.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/SCProcController.v|
+!s101 -O0
+vSevenSeg
+IgOWZ7d=oZX?UcbGm<DBcB3
+VKZQ;?2zCF>`gI56YS>C7c1
+R1
+R5
+8E:/Project2-1.1/Project2-1.0/SevenSeg.v
+FE:/Project2-1.1/Project2-1.0/SevenSeg.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@seven@seg
+!i10b 1
+!s100 nI8ICU^:>CYDKIT<ab9ZH3
+!s85 0
+!s108 1445806529.034000
+!s107 E:/Project2-1.1/Project2-1.0/SevenSeg.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/SevenSeg.v|
+!s101 -O0
+vSignExtension
+IQX6cMTOJ7;IR^Fh1[[WJf1
+VjjMXQ2A_@M;USO7=KT?Vh1
+R1
+R5
+8E:/Project2-1.1/Project2-1.0/SignExtension.v
+FE:/Project2-1.1/Project2-1.0/SignExtension.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@sign@extension
+!i10b 1
+!s100 diOM@9M[]B9j0^[@OJR^T1
+!s85 0
+!s108 1445806529.252000
+!s107 E:/Project2-1.1/Project2-1.0/SignExtension.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Project2-1.1/Project2-1.0|E:/Project2-1.1/Project2-1.0/SignExtension.v|
+!s101 -O0

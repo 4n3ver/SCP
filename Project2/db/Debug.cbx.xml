@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="Debug">
-		<CBX_INST_ENTRY INSTANCE_NAME="|RF|altsyncram:regData_rtl_0" CBX_FILE_NAME="altsyncram_ung1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|RF|altsyncram:regData_rtl_1" CBX_FILE_NAME="altsyncram_ung1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Project2|DataMemory:dataMem|altsyncram:data_rtl_0" CBX_FILE_NAME="altsyncram_j961.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

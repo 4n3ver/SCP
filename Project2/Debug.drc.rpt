@@ -1,5 +1,5 @@
 Design Assistant report for Debug
-Fri Oct 23 22:40:02 2015
+Sun Oct 25 20:46:57 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -9,8 +9,10 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   1. Legal Notice
   2. Design Assistant Summary
   3. Design Assistant Settings
-  4. Information only Violations
-  5. Design Assistant Messages
+  4. High Violations
+  5. Medium Violations
+  6. Information only Violations
+  7. Design Assistant Messages
 
 
 
@@ -36,14 +38,17 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------+
 ; Design Assistant Summary                                                ;
 +-----------------------------------+-------------------------------------+
-; Design Assistant Status           ; Analyzed - Fri Oct 23 22:40:02 2015 ;
+; Design Assistant Status           ; Analyzed - Sun Oct 25 20:46:57 2015 ;
 ; Revision Name                     ; Debug                               ;
-; Top-level Entity Name             ; RF                                  ;
+; Top-level Entity Name             ; Project2                            ;
 ; Family                            ; Cyclone II                          ;
 ; Total Critical Violations         ; 0                                   ;
-; Total High Violations             ; 0                                   ;
-; Total Medium Violations           ; 0                                   ;
-; Total Information only Violations ; 50                                  ;
+; Total High Violations             ; 1                                   ;
+; - Rule C105                       ; 1                                   ;
+; Total Medium Violations           ; 1                                   ;
+; - Rule C106                       ; 1                                   ;
+; Total Information only Violations ; 63                                  ;
+; - Rule T101                       ; 13                                  ;
 ; - Rule T102                       ; 50                                  ;
 +-----------------------------------+-------------------------------------+
 
@@ -94,62 +99,113 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+----+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------+
-; Information only Violations                                                                                                                ;
-+----------------------------------------------------------+-----------------------------------------------------------------------+---------+
-; Rule name                                                ; Name                                                                  ; Fan-Out ;
-+----------------------------------------------------------+-----------------------------------------------------------------------+---------+
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[24]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[2]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[28]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[19]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[3]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[27]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[1]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[5]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[30]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[25]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[26]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; clk~clkctrl                                                           ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[29]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[4]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[23]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[22]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[21]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[20]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[18]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrIndex[3]                                                     ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[17]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[16]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrIndex[2]                                                     ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[15]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrIndex[1]                                                     ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[14]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[13]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrIndex[0]                                                     ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[12]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[11]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[10]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[0]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[9]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; regFileWrEn                                                           ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[8]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[7]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[6]                                                             ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; dataIn[31]                                                            ; 2       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a24 ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a25 ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a26 ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a27 ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a28 ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a29 ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a30 ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_0|altsyncram_ung1:auto_generated|ram_block1a31 ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_1|altsyncram_ung1:auto_generated|ram_block1a5  ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_1|altsyncram_ung1:auto_generated|ram_block1a6  ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_1|altsyncram_ung1:auto_generated|ram_block1a7  ; 1       ;
-; Rule T102: Top nodes with the highest number of fan-outs ; altsyncram:regData_rtl_1|altsyncram_ung1:auto_generated|ram_block1a9  ; 1       ;
-+----------------------------------------------------------+-----------------------------------------------------------------------+---------+
++------------------------------------------------------------+
+; High Violations                                            ;
++---------------------------------------------------+--------+
+; Rule name                                         ; Name   ;
++---------------------------------------------------+--------+
+; Rule C105: Clock signal should be a global signal ; KEY[0] ;
++---------------------------------------------------+--------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Medium Violations                                                                                                                                                                                       ;
++----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+; Rule name                                                                                    ; Name                                                                                                     ;
++----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+; Rule C106: Clock signal source should not drive registers triggered by different clock edges ; KEY[0]                                                                                                   ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_datain_reg1   ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_address_reg10 ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_address_reg9  ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_address_reg8  ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_address_reg7  ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_address_reg6  ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_address_reg5  ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_address_reg4  ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_address_reg3  ;
+;  Positive edge destination node(s) list                                                      ; DataMemory:dataMem|altsyncram:data_rtl_0|altsyncram_4i61:auto_generated|ram_block1a2~porta_address_reg2  ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[7]                                                                                   ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[2]                                                                                   ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[3]                                                                                   ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[5]                                                                                   ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[4]                                                                                   ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[9]                                                                                   ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[8]                                                                                   ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[6]                                                                                   ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[11]                                                                                  ;
+;  Negative edge destination node(s) list                                                      ; Register:pc|dataOut[10]                                                                                  ;
++----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Information only Violations                                                                                     ;
++------------------------------------------------------------------+------------------------------------+---------+
+; Rule name                                                        ; Name                               ; Fan-Out ;
++------------------------------------------------------------------+------------------------------------+---------+
+; Rule T101: Nodes with more than the specified number of fan-outs ; Register:pc|dataOut[2]             ; 48      ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; KEY[0]                             ; 210     ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; SCProcController:contr|Mux2~1      ; 32      ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; InstMemory:instMem|data~5          ; 186     ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; RF:regFile|regData~708             ; 32      ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; SCProcController:contr|Mux3~0      ; 33      ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; RF:regFile|regData~706             ; 32      ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; InstMemory:instMem|data~11         ; 90      ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; SCProcController:contr|Mux9~0      ; 110     ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; RF:regFile|regData~707             ; 32      ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; RF:regFile|regData~705             ; 32      ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; newALU:alu1|Mux3~0                 ; 32      ;
+; Rule T101: Nodes with more than the specified number of fan-outs ; RF:regFile|regData~594             ; 32      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; KEY[0]                             ; 210     ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; InstMemory:instMem|data~5          ; 186     ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; SCProcController:contr|Mux9~0      ; 110     ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; InstMemory:instMem|data~11         ; 90      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; Register:pc|dataOut[2]             ; 48      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; SCProcController:contr|Mux3~0      ; 33      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|Mux3~0                 ; 32      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; RF:regFile|regData~708             ; 32      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; RF:regFile|regData~705             ; 32      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; RF:regFile|regData~594             ; 32      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; RF:regFile|regData~707             ; 32      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; RF:regFile|regData~706             ; 32      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; SCProcController:contr|Mux2~1      ; 32      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; SCProcController:contr|Mux6~0      ; 29      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[2]~2               ; 22      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; Register:pc|dataOut[3]             ; 19      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[9]~8               ; 17      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[8]~7               ; 17      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[7]~4               ; 17      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[4]~5               ; 17      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[6]~3               ; 17      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[3]~9               ; 17      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[5]~6               ; 17      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; SCProcController:contr|Mux10~0     ; 16      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[12]~12             ; 16      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; bounceCount[2]~26                  ; 16      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; DataMemory:dataMem|always1~8       ; 16      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[11]~11             ; 16      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; InstMemory:instMem|data~15         ; 16      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[10]~10             ; 16      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; Register:pc|dataOut[4]             ; 15      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; Register:pc|dataOut[5]             ; 15      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; InstMemory:instMem|data~7          ; 15      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; mux4:dataMux|dataOut[31]~70        ; 15      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; SCProcController:contr|pcSel[0]~29 ; 15      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; mux4:dataMux|dataOut[31]~71        ; 15      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; KEY[1]                             ; 14      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; InstMemory:instMem|data~3          ; 13      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; newALU:alu1|out[3]~1               ; 11      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; Equal0~4                           ; 11      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; InstMemory:instMem|data~1          ; 11      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; InstMemory:instMem|data~0          ; 11      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; DataMemory:dataMem|sw_reg[0]~0     ; 10      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; SCProcController:contr|Equal1~0    ; 10      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; InstMemory:instMem|data~6          ; 10      ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; Register:pc|dataOut[7]             ; 9       ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; Register:pc|dataOut[9]             ; 9       ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; Register:pc|dataOut[12]            ; 9       ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; Register:pc|dataOut[8]             ; 9       ;
+; Rule T102: Top nodes with the highest number of fan-outs         ; SCProcController:contr|Decoder0~0  ; 9       ;
++------------------------------------------------------------------+------------------------------------+---------+
 
 
 +---------------------------+
@@ -158,7 +214,7 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Design Assistant
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Oct 23 22:40:02 2015
+    Info: Processing started: Sun Oct 25 20:46:57 2015
 Info: Command: quartus_drc --read_settings_files=off --write_settings_files=off Project2 -c Debug
 Info (332104): Reading SDC File: 'Timing.sdc'
 Warning (332174): Ignored filter at Timing.sdc(1): CLOCK_50 could not be matched with a port
@@ -174,43 +230,61 @@ Warning (332049): Ignored set_output_delay at Timing.sdc(8): Argument -clock is 
 Warning (332049): Ignored set_output_delay at Timing.sdc(9): Argument -clock is not an object ID
     Info (332050): set_output_delay -clock "Clock10" -min 0ns [all_outputs] 
 Info (332144): No user constrained base clocks found in the design
+Critical Warning (308042): (High) Rule C105: Clock signal should be a global signal. (Value defined:25). Found 1 node(s) related to this rule.
+    Critical Warning (308012): Node  "KEY[0]"
+Warning (308022): (Medium) Rule C106: Clock signal source should not drive registers triggered by different clock edges. Found 1 node(s) related to this rule.
+    Warning (308010): Node  "KEY[0]"
+Info (308046): (Information) Rule T101: Nodes with more than the specified number of fan-outs. (Value defined:30). Found 13 node(s) with highest fan-out.
+    Info (308011): Node  "Register:pc|dataOut[2]"
+    Info (308011): Node  "KEY[0]"
+    Info (308011): Node  "SCProcController:contr|Mux2~1"
+    Info (308011): Node  "InstMemory:instMem|data~5"
+    Info (308011): Node  "RF:regFile|regData~708"
+    Info (308011): Node  "SCProcController:contr|Mux3~0"
+    Info (308011): Node  "RF:regFile|regData~706"
+    Info (308011): Node  "InstMemory:instMem|data~11"
+    Info (308011): Node  "SCProcController:contr|Mux9~0"
+    Info (308011): Node  "RF:regFile|regData~707"
+    Info (308011): Node  "RF:regFile|regData~705"
+    Info (308011): Node  "newALU:alu1|Mux3~0"
+    Info (308011): Node  "RF:regFile|regData~594"
 Info (308044): (Information) Rule T102: Top nodes with the highest number of fan-outs. (Value defined:50). Found 50 node(s) with highest fan-out.
-    Info (308011): Node  "dataIn[24]"
-    Info (308011): Node  "dataIn[2]"
-    Info (308011): Node  "dataIn[28]"
-    Info (308011): Node  "dataIn[19]"
-    Info (308011): Node  "dataIn[3]"
-    Info (308011): Node  "dataIn[27]"
-    Info (308011): Node  "dataIn[1]"
-    Info (308011): Node  "dataIn[5]"
-    Info (308011): Node  "dataIn[30]"
-    Info (308011): Node  "dataIn[25]"
-    Info (308011): Node  "dataIn[26]"
-    Info (308011): Node  "clk~clkctrl"
-    Info (308011): Node  "dataIn[29]"
-    Info (308011): Node  "dataIn[4]"
-    Info (308011): Node  "dataIn[23]"
-    Info (308011): Node  "dataIn[22]"
-    Info (308011): Node  "dataIn[21]"
-    Info (308011): Node  "dataIn[20]"
-    Info (308011): Node  "dataIn[18]"
-    Info (308011): Node  "regFileWrIndex[3]"
-    Info (308011): Node  "dataIn[17]"
-    Info (308011): Node  "dataIn[16]"
-    Info (308011): Node  "regFileWrIndex[2]"
-    Info (308011): Node  "dataIn[15]"
-    Info (308011): Node  "regFileWrIndex[1]"
-    Info (308011): Node  "dataIn[14]"
-    Info (308011): Node  "dataIn[13]"
-    Info (308011): Node  "regFileWrIndex[0]"
-    Info (308011): Node  "dataIn[12]"
-    Info (308011): Node  "dataIn[11]"
+    Info (308011): Node  "KEY[0]"
+    Info (308011): Node  "InstMemory:instMem|data~5"
+    Info (308011): Node  "SCProcController:contr|Mux9~0"
+    Info (308011): Node  "InstMemory:instMem|data~11"
+    Info (308011): Node  "Register:pc|dataOut[2]"
+    Info (308011): Node  "SCProcController:contr|Mux3~0"
+    Info (308011): Node  "newALU:alu1|Mux3~0"
+    Info (308011): Node  "RF:regFile|regData~708"
+    Info (308011): Node  "RF:regFile|regData~705"
+    Info (308011): Node  "RF:regFile|regData~594"
+    Info (308011): Node  "RF:regFile|regData~707"
+    Info (308011): Node  "RF:regFile|regData~706"
+    Info (308011): Node  "SCProcController:contr|Mux2~1"
+    Info (308011): Node  "SCProcController:contr|Mux6~0"
+    Info (308011): Node  "newALU:alu1|out[2]~2"
+    Info (308011): Node  "Register:pc|dataOut[3]"
+    Info (308011): Node  "newALU:alu1|out[9]~8"
+    Info (308011): Node  "newALU:alu1|out[8]~7"
+    Info (308011): Node  "newALU:alu1|out[7]~4"
+    Info (308011): Node  "newALU:alu1|out[4]~5"
+    Info (308011): Node  "newALU:alu1|out[6]~3"
+    Info (308011): Node  "newALU:alu1|out[3]~9"
+    Info (308011): Node  "newALU:alu1|out[5]~6"
+    Info (308011): Node  "SCProcController:contr|Mux10~0"
+    Info (308011): Node  "newALU:alu1|out[12]~12"
+    Info (308011): Node  "bounceCount[2]~26"
+    Info (308011): Node  "DataMemory:dataMem|always1~8"
+    Info (308011): Node  "newALU:alu1|out[11]~11"
+    Info (308011): Node  "InstMemory:instMem|data~15"
+    Info (308011): Node  "newALU:alu1|out[10]~10"
     Info (308002): Truncated list of Design Assistant messages to 30 messages. Go to sections under Design Assistant section of Compilation Report for complete lists of Design Assistant messages generated.
-Info (308007): Design Assistant information: finished post-fitting analysis of current design -- generated 50 information messages and 0 warning messages
-Info: Quartus II 64-Bit Design Assistant was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 409 megabytes
-    Info: Processing ended: Fri Oct 23 22:40:03 2015
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:00
+Info (308007): Design Assistant information: finished post-fitting analysis of current design -- generated 63 information messages and 2 warning messages
+Info: Quartus II 64-Bit Design Assistant was successful. 0 errors, 11 warnings
+    Info: Peak virtual memory: 435 megabytes
+    Info: Processing ended: Sun Oct 25 20:46:57 2015
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:01
 
 

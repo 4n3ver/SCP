@@ -8,7 +8,7 @@ module mux2(sel, data1, data2, dataOut);
 	reg [DATA_BIT_WIDTH - 1:0] dataOut;
 	
 	always @(*) begin
-		if (sel)
+		if (sel == 1'b1)
 			dataOut <= data2;
 		else
 			dataOut <= data1;

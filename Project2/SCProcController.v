@@ -11,6 +11,8 @@ module SCProcController(memWrEn, regFileWrEn, aluAltOp, pcSel, aluSrc2Sel,
 	parameter [1:0] regFileWrSel_ALU = 2'b00,
 					regFileWrSel_MEM = 2'b01,
 					regFileWrSel_PC4 = 2'b10;
+
+				
 	
 	input aluOut;
 	input [31:0] instruction;
@@ -84,41 +86,67 @@ module SCProcController(memWrEn, regFileWrEn, aluAltOp, pcSel, aluSrc2Sel,
 				aluSrc2Sel = aluSrc2Sel_IMM;	
 			end
 			2'b10: begin
-				case (opcode[3:2]) 
+//				case (opcode[3:2])
+//					2'b01: begin
+//						aluAltOp = 1'b1;
+//						regFileRd0Index = instruction[31:28];
+//						regFileRd1Index = instruction[27:24];
+//						regFileWrEn = 1'b0;
+//						memWrEn = 1'b0;
+//						aluSrc2Sel = 1'b0;
+//						if (aluOut)
+//							pcSel = 2'b01;
+//						else
+//							pcSel = 2'b00;
+//					end
+//					2'b10: begin
+//						aluAltOp = 1'b1;
+//						regFileRd0Index = instruction[31:28];
+//						regFileRd1Index = instruction[27:24];
+//						regFileWrEn = 1'b0;
+//						memWrEn = 1'b0;
+//						aluSrc2Sel = 1'b1;
+//						pcSel = 2'b00;
+//					end
+//				endcase
+				
+				
+				case (opcode[3:2])
 					2'b01: begin	// BRANCH
 						regFileWrEn = 1'b0;
-						regFileWrSel = 2'bxx;
+						regFileWrSel <= 2'bxx;
 						regFileRd0Index = instruction[31:28];
 						regFileRd1Index = instruction[27:24];
 						aluSrc2Sel = aluSrc2Sel_RS2;
+						if (aluOut == 1'b1) begin
+						pcSel = pcSel_4IMM;
+						end else begin
+							pcSel = pcSel_4;
+						end
+						aluAltOp = 1'b1;
+						memWrEn = 1'b0;
 					end
-					default: begin
-						case (opcode[3:2])
-							2'b00: begin	// CMP-R
-								regFileRd1Index = instruction[23:20];
-								aluSrc2Sel = aluSrc2Sel_RS2;
-							end
-							2'b10: begin	// CMP-I
-								regFileRd1Index = 4'bxxxx;
-								aluSrc2Sel = aluSrc2Sel_IMM;
-							end
-							default: begin
-								regFileRd1Index = 4'bxxxx;
-								aluSrc2Sel = 1'bx;
-							end
-						endcase
-						regFileWrEn = 1'b1;
+					2'b00: begin	// CMP-R
+						aluAltOp = 1'b1;
+						regFileRd1Index = instruction[23:20];
 						regFileRd0Index = instruction[27:24];
+						aluSrc2Sel = aluSrc2Sel_RS2;
+						regFileWrEn = 1'b1;
+						pcSel = pcSel_4;
 						regFileWrSel = regFileWrSel_ALU;
+						memWrEn = 1'b0;
+					end
+					2'b10: begin	// CMP-I
+						aluAltOp = 1'b1;
+						pcSel = pcSel_4;
+						regFileRd0Index = instruction[27:24];
+						regFileWrEn = 1'b1;
+						regFileRd1Index = 4'bxxxx;
+						aluSrc2Sel = aluSrc2Sel_IMM;
+						regFileWrSel = regFileWrSel_ALU;
+						memWrEn = 1'b0;
 					end
 				endcase
-				if (aluOut == 1'b1) begin
-					pcSel = pcSel_4IMM;
-				end else begin
-					pcSel = pcSel_4;
-				end
-				aluAltOp = 1'b1;
-				memWrEn = 1'b0;
 			end
 			2'b11: begin
 				case (opcode[3:2])

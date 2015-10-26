@@ -207,6 +207,8 @@ MemWorks:
 	addi	s0,s0,1
 	sw		s0,OFSLEDG(gp)
 	addi	t1,fp,JalRet
+	add		t1,t1,t1
+	add		t1,t1,t1
 	jal		t0,JalTarg(fp)
 JalRet:
 	bt		t0,t0,JalWorks
@@ -237,5 +239,3 @@ Done:
 	sw		t0,OFSLEDG(gp)
 	sw		t0,OFSHEX(gp)
 	bt		t0,t0,Done
-.ORIG 0x1C00
-	addi s0, t0, -1
